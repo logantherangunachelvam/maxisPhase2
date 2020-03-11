@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>740,3748</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>740,3652</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -79,7 +79,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap:VirtualizedContainerService.HintSize="720,3688" sap2010:WorkflowViewState.IdRef="Sequence_8">
+  <Sequence sap:VirtualizedContainerService.HintSize="720,3592" sap2010:WorkflowViewState.IdRef="Sequence_8">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="[&quot;Test-Value&quot;]" Name="Prompt_Assignment" />
       <Variable x:TypeArguments="s:String[]" Default="[{&quot;my-value-1&quot;,&quot;my-value-2&quot;,&quot;my-value-3&quot;,&quot;my-value-4&quot;,&quot;my-value-5&quot;}]" Name="my_list_variable" />
@@ -94,7 +94,6 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:Comment sap:VirtualizedContainerService.HintSize="678.4,56" sap2010:WorkflowViewState.IdRef="Comment_5" Text="// Write your comments in the Text property" />
     <ui:Comment sap:VirtualizedContainerService.HintSize="678.4,56" sap2010:WorkflowViewState.IdRef="Comment_1" Text="=== Get task name ===" />
     <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="678.4,259.2" sap2010:WorkflowViewState.IdRef="CommentOut_4">
       <ui:CommentOut.Body>
@@ -115,7 +114,7 @@
     </ui:CommentOut>
     <TryCatch sap2010:Annotation.AnnotationText="Begin Error Handling; Action: Continue; Options: Variable Assignment,  Task Status: Fail" sap:VirtualizedContainerService.HintSize="678.4,3104" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="641,1894" sap2010:WorkflowViewState.IdRef="Sequence_4">
+        <Sequence sap:VirtualizedContainerService.HintSize="640.8,1894.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:Boolean" Name="fileExists" />
           </Sequence.Variables>

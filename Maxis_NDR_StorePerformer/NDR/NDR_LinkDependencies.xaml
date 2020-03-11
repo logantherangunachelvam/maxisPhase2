@@ -1,0 +1,276 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="NDR_LinkDependencies" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_ConfigXLS" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>396,4430</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.CSV</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.CSV.Activities</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>UiPath.Mail.IMAP.Activities</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.POP3.Activities</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Orchestrator.Client</x:String>
+      <x:String>UiPath.Orchestrator.Client.Models</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>UiPath.JSON.Activities</x:String>
+      <x:String>UiPath.REST.Activities</x:String>
+      <x:String>UiPath.SOAP.Activities</x:String>
+      <x:String>UiPath.XML.Activities</x:String>
+      <x:String>UiPath.Web</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>system</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OrchestratorClient</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="376,4370" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="[&quot;true&quot;]" Name="vPlaceholder" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_B1.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Checks\ModularCheck_B1.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[in_ConfigXLS]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_D1.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Checks\ModularCheck_D1.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[in_ConfigXLS]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_I1.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Checks\ModularCheck_I1.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[in_ConfigXLS]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_I2.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Checks\ModularCheck_I2.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[in_ConfigXLS]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_I3.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Checks\ModularCheck_I3.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_I4.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Checks\ModularCheck_I4.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_I5.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Checks\ModularCheck_I5.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[in_ConfigXLS]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_I6.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Checks\ModularCheck_I6.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_I7.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Checks\ModularCheck_I7.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[in_ConfigXLS]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_IK1.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Checks\ModularCheck_IK1.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[in_ConfigXLS]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_K1.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Checks\ModularCheck_K1.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_K2.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Checks\ModularCheck_K2.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[in_ConfigXLS]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_K3.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Checks\ModularCheck_K3.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_K4.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="Checks\ModularCheck_K4.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_K5.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="Checks\ModularCheck_K5.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_K6.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_16" UnSafe="False" WorkflowFileName="Checks\ModularCheck_K6.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_K7.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" UnSafe="False" WorkflowFileName="Checks\ModularCheck_K7.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_K8.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_18" UnSafe="False" WorkflowFileName="Checks\ModularCheck_K8.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_K9.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_19" UnSafe="False" WorkflowFileName="Checks\ModularCheck_K9.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[in_ConfigXLS]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_K10.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_20" UnSafe="False" WorkflowFileName="Checks\ModularCheck_K10.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_K11.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_21" UnSafe="False" WorkflowFileName="Checks\ModularCheck_K11.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[in_ConfigXLS]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_K12.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_22" UnSafe="False" WorkflowFileName="Checks\ModularCheck_K12.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_K13.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_23" UnSafe="False" WorkflowFileName="Checks\ModularCheck_K13.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_KU1.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_24" UnSafe="False" WorkflowFileName="Checks\ModularCheck_KU1.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[in_ConfigXLS]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_R1.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_25" UnSafe="False" WorkflowFileName="Checks\ModularCheck_R1.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_R2.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_26" UnSafe="False" WorkflowFileName="Checks\ModularCheck_R2.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[in_ConfigXLS]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_R3.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_27" UnSafe="False" WorkflowFileName="Checks\ModularCheck_R3.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[in_ConfigXLS]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_RK1.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_28" UnSafe="False" WorkflowFileName="Checks\ModularCheck_RK1.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[in_ConfigXLS]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_RK2.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_29" UnSafe="False" WorkflowFileName="Checks\ModularCheck_RK2.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_RM1.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_30" UnSafe="False" WorkflowFileName="Checks\ModularCheck_RM1.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[in_ConfigXLS]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_U1.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_31" UnSafe="False" WorkflowFileName="Checks\ModularCheck_U1.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[in_ConfigXLS]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_K14.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_32" UnSafe="False" WorkflowFileName="Checks\ModularCheck_K14.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_K15.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_33" UnSafe="False" WorkflowFileName="Checks\ModularCheck_K15.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Task &quot;$AAApplicationPath$\Automation Anywhere\My Tasks\NDR\Checks\ModularCheck_I8.atmx&quot; @Repeat: Do Not Repeat @Speed: Normal Speed @Pass Variable as argument: $vPlaceholder$" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_34" UnSafe="False" WorkflowFileName="Checks\ModularCheck_I8.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[in_ConfigXLS]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+  </Sequence>
+</Activity>

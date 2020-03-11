@@ -1,0 +1,931 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="_Test" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="777,4356" sap2010:WorkflowViewState.IdRef="_Test_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="24">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="21">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="_Test" sap:VirtualizedContainerService.HintSize="757,4256" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="ConfigXLS" />
+      <Variable x:TypeArguments="x:String" Name="strCurDateTime" />
+      <Variable x:TypeArguments="x:String" Name="strHasSystemError" />
+      <Variable x:TypeArguments="x:Int32" Name="intRetryMax" />
+      <Variable x:TypeArguments="x:String" Name="strSystemMessage" />
+      <Variable x:TypeArguments="x:String" Name="vConsolReportPath" />
+      <Variable x:TypeArguments="x:String" Name="vMaxisCentreCode" />
+      <Variable x:TypeArguments="x:String" Name="strHasError" />
+      <Variable x:TypeArguments="x:String" Name="strMessage" />
+      <Variable x:TypeArguments="x:String" Name="vTempConsolReport" />
+      <Variable x:TypeArguments="x:String" Name="strCurDate" />
+      <Variable x:TypeArguments="x:String" Name="vBaseFolderTemp" />
+      <Variable x:TypeArguments="x:String" Name="vFindingsFilePath" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="vWebBackstoreURL" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="vPosType" />
+      <Variable x:TypeArguments="x:String" Name="strDasirReport">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String" Value="" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="vEmailSub" />
+      <Variable x:TypeArguments="x:String" Name="vEmailBodyConsol" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="vPICEmail" />
+      <Variable x:TypeArguments="x:String" Name="vEmailOpsPIC" />
+      <Variable x:TypeArguments="x:String" Name="vIsReply" />
+      <Variable x:TypeArguments="x:String" Name="vIsHTML" />
+      <Variable x:TypeArguments="x:String" Name="vSignature" />
+      <Variable x:TypeArguments="x:String" Name="vBotName" />
+      <Variable x:TypeArguments="x:Boolean" Name="fileExists" />
+      <Variable x:TypeArguments="x:String" Name="vEmailPassTemplate" />
+      <Variable x:TypeArguments="x:String" Name="vEmailBody" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtMaxisCentre" />
+      <Variable x:TypeArguments="x:String" Name="vSO1ReportPath" />
+      <Variable x:TypeArguments="x:String" Name="vSharedDriveSO1ReportPath" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Config_Init workflow" sap:VirtualizedContainerService.HintSize="715,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="NDR\Config_Init.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="out_ConfigXLS">[ConfigXLS]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFilePath">Data\MainConfig.xlsx</InArgument>
+        <InArgument x:TypeArguments="s:String[]" x:Key="in_ConfigSheets">[{"Main"}]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NDR_Initialise workflow" sap:VirtualizedContainerService.HintSize="715,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="NDR\NDR_Initialise.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vCurDateTime">[strCurDateTime]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vHasSystemError">[strHasSystemError]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:Int32" x:Key="vRetryMax">[intRetryMax]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vSystemMessage">[strSystemMessage]</InOutArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[ConfigXLS]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <Sequence DisplayName="Init Variables" sap:VirtualizedContainerService.HintSize="715,856" sap2010:WorkflowViewState.IdRef="Sequence_5">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign sap:VirtualizedContainerService.HintSize="379,60" sap2010:WorkflowViewState.IdRef="Assign_23">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[strCurDateTime]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">02/17/2020 00:00:00</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="379,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[strCurDate]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[strCurDateTime]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="e.g.&#xA;20191002" DisplayName="Invoke Workflow File - Assign strCurDate" sap:VirtualizedContainerService.HintSize="379,129" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Library\Bot Store\Utility_DateTime\Format_String_With_Date_time.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InOutArgument x:TypeArguments="x:String" x:Key="vStr">[strCurDate]</InOutArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="vFormat">yyyyMMdd</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:InvokeWorkflowFile>
+      <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="379,51" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+        <ui:MultipleAssign.AssignOperations>
+          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="16">
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[vConsolReportPath]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[ConfigXLS("vConsolReportPath")]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[vBaseFolderTemp]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[ConfigXLS("vBaseFolderTemp")]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[vFindingsFilePath]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[ConfigXLS("vFindingsFilePath")]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[vEmailOpsPIC]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[ConfigXLS("vEmailOpsPIC")]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[vBotName]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[ConfigXLS("vBotName")]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[vIsReply]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">false</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[vIsHTML]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">true</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[vSignature]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[vBotName]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[strHasError]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">false</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[strHasSystemError]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">false</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[vSO1ReportPath]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[ConfigXLS("vSO1ReportPath")]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_12">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[vSharedDriveSO1ReportPath]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[ConfigXLS("vSharedDriveSO1ReportPath")]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+          </scg:List>
+        </ui:MultipleAssign.AssignOperations>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:MultipleAssign>
+      <ui:ReadTextFile Content="[vEmailBodyConsol]" DisplayName="Read Text File - Email Consol Template" FileName="[ConfigXLS(&quot;vEmailConsolidationTemplate&quot;)]" sap:VirtualizedContainerService.HintSize="379,132" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+      <ui:ReadTextFile Content="[vEmailPassTemplate]" DisplayName="Read Text File - Email Pass Template" FileName="[ConfigXLS(&quot;vEmailPassTemplate&quot;)]" sap:VirtualizedContainerService.HintSize="379,132" sap2010:WorkflowViewState.IdRef="ReadTextFile_2" />
+    </Sequence>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="715,576" sap2010:WorkflowViewState.IdRef="CommentOut_33">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="480,498" sap2010:WorkflowViewState.IdRef="Sequence_50">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <TryCatch DisplayName="Try Catch - Extract DASIR" sap:VirtualizedContainerService.HintSize="438,406" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <TryCatch.Try>
+              <Sequence sap:VirtualizedContainerService.HintSize="376,179" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NDR_ExtractDasirReport workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="NDR\NDR_ExtractDasirReport.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InOutArgument x:TypeArguments="x:String" x:Key="vCurDateTime">[strCurDateTime]</InOutArgument>
+                    <InOutArgument x:TypeArguments="x:String" x:Key="vHasError">[strHasError]</InOutArgument>
+                    <InOutArgument x:TypeArguments="x:String" x:Key="vHasSystemError">[strHasSystemError]</InOutArgument>
+                    <InOutArgument x:TypeArguments="x:String" x:Key="vMessage">[strMessage]</InOutArgument>
+                    <InOutArgument x:TypeArguments="x:String" x:Key="vSystemMessage">[strSystemMessage]</InOutArgument>
+                    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[ConfigXLS]</InArgument>
+                    <OutArgument x:TypeArguments="x:String" x:Key="out_strDasirReport">[strDasirReport]</OutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+            </TryCatch.Try>
+            <TryCatch.Catches>
+              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ActivityAction x:TypeArguments="s:Exception">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                  </ActivityAction.Argument>
+                  <Sequence sap:VirtualizedContainerService.HintSize="376,413" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[strHasError]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">true</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Fatal" Message="[exception.Message]" />
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Fatal" Message="[exception.StackTrace]" />
+                  </Sequence>
+                </ActivityAction>
+              </Catch>
+            </TryCatch.Catches>
+          </TryCatch>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <ui:ReadRange AddHeaders="True" DataTable="[dtMaxisCentre]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="715,87" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Maxis_Centre" WorkbookPath="C:\Maxis\NDR\ZZ Config\MaxisCentreList_TEST.xls">
+      <ui:ReadRange.Range>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+      </ui:ReadRange.Range>
+    </ui:ReadRange>
+    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[dtMaxisCentre]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="715,2271" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="665,2123" sap2010:WorkflowViewState.IdRef="Sequence_31">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="vConsolReportFilePath" />
+              <Variable x:TypeArguments="x:String" Name="vFindingsXLSFilePath" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap2010:Annotation.AnnotationText="only for unit TESTING" DisplayName="Manually Assign MaxisCentreCode" sap:VirtualizedContainerService.HintSize="623,87" sap2010:WorkflowViewState.IdRef="Assign_9">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[vMaxisCentreCode]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[row("Centre Code").ToString]</InArgument>
+              </Assign.Value>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Assign>
+            <Assign sap2010:Annotation.AnnotationText="only for unit TESTING" DisplayName="Manually Assign WebStoreUrl" sap:VirtualizedContainerService.HintSize="623,87" sap2010:WorkflowViewState.IdRef="Assign_10">
+              <Assign.To>
+                <OutArgument x:TypeArguments="ui:GenericValue">[vWebBackstoreURL]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="ui:GenericValue">[row("WebBS URL").ToString]</InArgument>
+              </Assign.Value>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Assign>
+            <Assign sap2010:Annotation.AnnotationText="only for unit TESTING" DisplayName="Manually Assign PosType" sap:VirtualizedContainerService.HintSize="623,87" sap2010:WorkflowViewState.IdRef="Assign_11">
+              <Assign.To>
+                <OutArgument x:TypeArguments="ui:GenericValue">[vPosType]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="ui:GenericValue">[row("Pos").ToString]</InArgument>
+              </Assign.Value>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Assign>
+            <Assign DisplayName="Manually Assign PICEmail" sap:VirtualizedContainerService.HintSize="623,60" sap2010:WorkflowViewState.IdRef="Assign_17">
+              <Assign.To>
+                <OutArgument x:TypeArguments="ui:GenericValue">[vPICEmail]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="ui:GenericValue">[row("PIC Email").ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="ReInit vConsolReportFilePath" sap:VirtualizedContainerService.HintSize="623,60" sap2010:WorkflowViewState.IdRef="Assign_24">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[vConsolReportFilePath]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" Value="" />
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="ReInit vFindingsXLSFilePath" sap:VirtualizedContainerService.HintSize="623,60" sap2010:WorkflowViewState.IdRef="Assign_25">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[vFindingsXLSFilePath]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" Value="" />
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;{1}&quot; with &quot;$vCurDate$&quot; in &quot;$vConsolReportPath$&quot; and assign output to $vConsolReportFilePath$ " DisplayName="Replace {1} with vCurDate - vConsolReportFilePath" sap:VirtualizedContainerService.HintSize="623,59" sap2010:WorkflowViewState.IdRef="Replace_7" Input="[vConsolReportPath]" IsBuilderTabModified="False" Pattern="\{1\}" RegexOption="IgnoreCase, Compiled" Replacement="[strCurDate]" Result="[vConsolReportFilePath]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:Replace>
+            <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;$vMaxisCentreCode$&quot; with &quot;$vMaxisCentreCode$&quot; in &quot;$vConsolReportFilePath$&quot; and assign output to $vConsolReportFilePath$ " BuilderPattern="" DisplayName="Replace {2} with vMaxisCentreCode - vConsolReportFilePath" sap:VirtualizedContainerService.HintSize="623,59" sap2010:WorkflowViewState.IdRef="Replace_8" Input="[vConsolReportFilePath]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\{2\}" RegexOption="IgnoreCase, Compiled" Replacement="[vMaxisCentreCode]" Result="[vConsolReportFilePath]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:Replace>
+            <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;$vFindingsFilePath$&quot; with &quot;$vMaxisCentreCode$&quot; in &quot;$vFindingsFilePath$&quot; and assign output to $vFindingsXLSFilePath$ " BuilderPattern="\{0\}" DisplayName="Replace {0} with vMaxisCentreCode - vFindingsXLSFilePath" sap:VirtualizedContainerService.HintSize="623,59" sap2010:WorkflowViewState.IdRef="Replace_9" Input="[vFindingsFilePath]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;\\{0\\}&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\{0\}" RegexOption="IgnoreCase" Replacement="[vMaxisCentreCode]" Result="[vFindingsXLSFilePath]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:Replace>
+            <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;$vFindingsFilePath$&quot; with &quot;$vMaxisCentreCode$&quot; in &quot;$vFindingsFilePath$&quot; and assign output to $vFindingsXLSFilePath$ " BuilderPattern="\{0\}" DisplayName="Replace {1} with vCurDate - vFindingsXLSFilePath" sap:VirtualizedContainerService.HintSize="623,59" sap2010:WorkflowViewState.IdRef="Replace_10" Input="[vFindingsXLSFilePath]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;\\{0\\}&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\{1\}" RegexOption="IgnoreCase" Replacement="[strCurDate]" Result="[vFindingsXLSFilePath]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:Replace>
+            <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;$vFindingsFilePath$&quot; with &quot;$vMaxisCentreCode$&quot; in &quot;$vFindingsFilePath$&quot; and assign output to $vFindingsXLSFilePath$ " BuilderPattern="\{0\}" DisplayName="Replace {2} with vCurDate - vFindingsXLSFilePath" sap:VirtualizedContainerService.HintSize="623,59" sap2010:WorkflowViewState.IdRef="Replace_11" Input="[vFindingsXLSFilePath]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;\\{0\\}&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\{2\}" RegexOption="IgnoreCase" Replacement="[vMaxisCentreCode]" Result="[vFindingsXLSFilePath]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:Replace>
+            <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;{3}&quot; with &quot;$System(USERNAME)$&quot; in &quot;$vFindingsXLSFilePath$&quot; and assign output to $vFindingsXLSFilePath$ " DisplayName="Replace {3} with UserName - vFindingsXLSFilePath" sap:VirtualizedContainerService.HintSize="623,59" sap2010:WorkflowViewState.IdRef="Replace_12" Input="[vFindingsXLSFilePath]" IsBuilderTabModified="False" Pattern="\{3\}" RegexOption="IgnoreCase, Compiled" Replacement="[Environment.UserName]" Result="[vFindingsXLSFilePath]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:Replace>
+            <If Condition="[strHasError = &quot;false&quot;]" DisplayName="Check if DASIR Report is completed" sap:VirtualizedContainerService.HintSize="623,756" sap2010:WorkflowViewState.IdRef="If_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="478,608" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <TryCatch sap2010:Annotation.AnnotationText="1. Extract and Prep Outlet Report&#xA;2. Generate Consolidate Report&#xA;3. Clean Up Consolidate Report&#xA;3a. Send Email" DisplayName="Try Catch - Generate Outlet and Consolidate Reports" sap:VirtualizedContainerService.HintSize="436,168" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <TryCatch.Try>
+                      <Sequence sap:VirtualizedContainerService.HintSize="478,2123" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:Comment sap:VirtualizedContainerService.HintSize="436,55" sap2010:WorkflowViewState.IdRef="Comment_3" Text="----------------------&#xA;Extract Outlet report" />
+                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NDR_ExtractOutletReport workflow" sap:VirtualizedContainerService.HintSize="436,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="NDR\NDR_ExtractOutletReport.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="vCurDateTime">[strCurDateTime]</InOutArgument>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="vHasSystemError">[strHasSystemError]</InOutArgument>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="vMaxisCentreCode">[vMaxisCentreCode]</InOutArgument>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="vSystemMessage">[strSystemMessage]</InOutArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="vWebBackstoreURL">[vWebBackstoreURL]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="vPosType">[vPosType]</InArgument>
+                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[ConfigXLS]</InArgument>
+                          </ui:InvokeWorkflowFile.Arguments>
+                        </ui:InvokeWorkflowFile>
+                        <ui:Comment sap:VirtualizedContainerService.HintSize="436,55" sap2010:WorkflowViewState.IdRef="Comment_4" Text="----------------------&#xA;Prepare Outlet report" />
+                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NDR_PrepareOutletReport workflow" sap:VirtualizedContainerService.HintSize="436,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="NDR\NDR_PrepareOutletReport.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="vCurDateTime">[strCurDateTime]</InOutArgument>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="vHasSystemError">[strHasSystemError]</InOutArgument>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="vMaxisCentreCode">[vMaxisCentreCode]</InOutArgument>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="vSystemMessage">[strSystemMessage]</InOutArgument>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="vFindingsXLSFilePath">[vFindingsXLSFilePath]</InOutArgument>
+                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[ConfigXLS]</InArgument>
+                          </ui:InvokeWorkflowFile.Arguments>
+                        </ui:InvokeWorkflowFile>
+                        <ui:Comment sap:VirtualizedContainerService.HintSize="436,55" sap2010:WorkflowViewState.IdRef="Comment_1" Text="----------------------&#xA;Consolidate reports" />
+                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NDR_ConsolidateReports workflow" sap:VirtualizedContainerService.HintSize="436,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="NDR\NDR_ConsolidateReports.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="vCurDateTime">[strCurDateTime]</InOutArgument>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="vHasSystemError">[strHasSystemError]</InOutArgument>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="vMaxisCentreCode">[vMaxisCentreCode]</InOutArgument>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="vSystemMessage">[strSystemMessage]</InOutArgument>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="vConsolReportFilePath">[vConsolReportFilePath]</InOutArgument>
+                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[ConfigXLS]</InArgument>
+                          </ui:InvokeWorkflowFile.Arguments>
+                        </ui:InvokeWorkflowFile>
+                        <ui:Comment sap:VirtualizedContainerService.HintSize="436,74" sap2010:WorkflowViewState.IdRef="Comment_2" Text="----------------------&#xA;Create a copy of consolidated report, clean up and send store " />
+                        <ui:CommentOut sap2010:Annotation.AnnotationText="KV - commented cleanup first" DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,284" sap2010:WorkflowViewState.IdRef="CommentOut_24">
+                          <ui:CommentOut.Body>
+                            <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,179" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NDR_CleanUpConsolReport workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="NDR\NDR_CleanUpConsolReport.xaml">
+                                <ui:InvokeWorkflowFile.Arguments>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vConsolReportFilePath">[vConsolReportFilePath]</InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vHasSystemError">[strHasSystemError]</InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vSystemMessage">[strSystemMessage]</InOutArgument>
+                                </ui:InvokeWorkflowFile.Arguments>
+                              </ui:InvokeWorkflowFile>
+                            </Sequence>
+                          </ui:CommentOut.Body>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:CommentOut>
+                        <ui:Comment sap:VirtualizedContainerService.HintSize="436,55" sap2010:WorkflowViewState.IdRef="Comment_7" Text="----------------------&#xA;Email Consolidated + Outlet Reports" />
+                        <Assign sap2010:Annotation.AnnotationText="Variable Operation: $vBaseFolderTemp$$vCurDate$_$vMaxisCentreCode$_Dasir&amp;Outlet_Report.xls To $vTempConsolReport$" sap:VirtualizedContainerService.HintSize="436,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[vTempConsolReport]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[vBaseFolderTemp + strCurDate +"_"+vMaxisCentreCode+"_Dasir&amp;Outlet_Report.xls"]</InArgument>
+                          </Assign.Value>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Assign>
+                        <ui:CopyFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Copy Files &quot;$vConsolReportFilePath$&quot; to &quot;$vTempConsolReport$&quot; &#xA;" Destination="[vTempConsolReport]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="436,157" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="[vConsolReportFilePath]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:CopyFile>
+                        <Sequence DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="436,535" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap2010:Annotation.AnnotationText="Variable Operation: [INFO] NDR Consolidated DASIR + Outlet Report for $vMaxisCentreCode$ To $vEmailSub$" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_16">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[vEmailSub]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">["[INFO] NDR Consolidated DASIR + Outlet Report for "+vMaxisCentreCode]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                          <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;$vEmailBodyConsol$&quot; with &quot;$vMaxisCentreCode$&quot; in &quot;$vEmailBodyConsol$&quot; and assign output to $vEmailBody$ " BuilderPattern="\{0\}" DisplayName="Replace {0} with vMaxisCentreCode - vEmailBody" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="Replace_19" Input="[vEmailBodyConsol]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;\\{0\\}&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\{0\}" RegexOption="IgnoreCase" Replacement="[vMaxisCentreCode]" Result="[vEmailBody]">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:Replace>
+                          <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;$vEmailBodyConsol$&quot; with &quot;$vMaxisCentreCode$&quot; in &quot;$vEmailBodyConsol$&quot; and assign output to $vEmailBody$ " BuilderPattern="\{1\}" DisplayName="Replace {1} with vSignature - vEmailBody" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="Replace_20" Input="[vEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;\\{1\\}&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\{1\}" RegexOption="IgnoreCase" Replacement="[vSignature]" Result="[vEmailBody]">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:Replace>
+                          <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[vEmailBody]" Cc="[vEmailOpsPIC]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="True" IsDraft="False" Subject="[vEmailSub]" To="[vPICEmail]">
+                            <ui:SendOutlookMail.Files>
+                              <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                                <InArgument x:TypeArguments="x:String">[vTempConsolReport]</InArgument>
+                              </scg:List>
+                            </ui:SendOutlookMail.Files>
+                          </ui:SendOutlookMail>
+                        </Sequence>
+                      </Sequence>
+                    </TryCatch.Try>
+                    <TryCatch.Catches>
+                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="482,21" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ActivityAction x:TypeArguments="s:Exception">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                          </ActivityAction.Argument>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Fatal" Message="[exception.Message]" />
+                        </ActivityAction>
+                      </Catch>
+                    </TryCatch.Catches>
+                  </TryCatch>
+                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,308" sap2010:WorkflowViewState.IdRef="CommentOut_34">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,230" sap2010:WorkflowViewState.IdRef="Sequence_51">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <TryCatch sap2010:Annotation.AnnotationText="4. Generate Service Request and Supervisor Dashboard Report&#xA;5. Get IDD and MCC&#xA;5a. Send Email" DisplayName="Try Catch - Findings Report" sap:VirtualizedContainerService.HintSize="200,138" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <TryCatch.Try>
+                            <Sequence sap:VirtualizedContainerService.HintSize="418,2605" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="x:String" Name="strHasRunCheck" />
+                                <Variable x:TypeArguments="x:String" Name="vWaiverXLSFilePath" />
+                                <Variable x:TypeArguments="x:String" Name="vRebateXLSFilePath" />
+                                <Variable x:TypeArguments="x:String" Name="vSharedDriveSO1ReportFilePath" />
+                                <Variable x:TypeArguments="x:String" Name="vSO1ReportFilePath" />
+                              </Sequence.Variables>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:Comment sap:VirtualizedContainerService.HintSize="376,55" sap2010:WorkflowViewState.IdRef="Comment_5" Text="----------------------&#xA;Initialise consol and findings reports" />
+                              <ui:PathExists sap2010:Annotation.AnnotationText="If File Exists (&quot;$vTempConsolReport$&quot;)  Then   " DisplayName="Path Exists" Exists="[fileExists]" sap:VirtualizedContainerService.HintSize="376,89" sap2010:WorkflowViewState.IdRef="PathExists_2" Path="[vTempConsolReport]" PathType="File">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:PathExists>
+                              <If sap2010:Annotation.AnnotationText="If File Exists (&quot;$vTempConsolReport$&quot;)  Then   " Condition="[fileExists]" DisplayName="Clean up Temp Consolidate Report after sending email" sap:VirtualizedContainerService.HintSize="376,51" sap2010:WorkflowViewState.IdRef="If_3">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If.Then>
+                                  <Sequence sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:Delete ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Delete Files &quot;$vTempConsolReport$&quot; " sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Delete_2" Path="[vTempConsolReport]">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:Delete>
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <ui:Comment sap:VirtualizedContainerService.HintSize="376,55" sap2010:WorkflowViewState.IdRef="Comment_6" Text="----------------------&#xA;Get other reports" />
+                              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NDR_ExtractiSellReports workflow" sap:VirtualizedContainerService.HintSize="376,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="NDR\NDR_ExtractiSellReports.xaml">
+                                <ui:InvokeWorkflowFile.Arguments>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vCurDateTime">[strCurDateTime]</InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vHasSystemError">[strHasSystemError]</InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vMaxisCentreCode">[vMaxisCentreCode]</InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vSystemMessage">[strSystemMessage]</InOutArgument>
+                                  <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[ConfigXLS]</InArgument>
+                                </ui:InvokeWorkflowFile.Arguments>
+                              </ui:InvokeWorkflowFile>
+                              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NDR_ExtractPostpaidNRCAdjReport workflow" sap:VirtualizedContainerService.HintSize="376,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="NDR\NDR_ExtractPostpaidNRCAdjReport.xaml">
+                                <ui:InvokeWorkflowFile.Arguments>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vCurDateTime">[strCurDateTime]</InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vHasSystemError">[strHasSystemError]</InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vMaxisCentreCode">[vMaxisCentreCode]</InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vSystemMessage">[strSystemMessage]</InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vWaiverXLSFilePath">[vWaiverXLSFilePath]</InOutArgument>
+                                  <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[ConfigXLS]</InArgument>
+                                </ui:InvokeWorkflowFile.Arguments>
+                              </ui:InvokeWorkflowFile>
+                              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NDR_ExtractRebateDiscountNRCReport workflow" sap:VirtualizedContainerService.HintSize="376,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="NDR\NDR_ExtractRebateDiscountNRCReport.xaml">
+                                <ui:InvokeWorkflowFile.Arguments>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vCurDateTime">[strCurDateTime]</InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vHasSystemError">[strHasSystemError]</InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vMaxisCentreCode">[vMaxisCentreCode]</InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vSystemMessage">[strSystemMessage]</InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vRebateXLSFilePath">[vRebateXLSFilePath]</InOutArgument>
+                                  <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[ConfigXLS]</InArgument>
+                                </ui:InvokeWorkflowFile.Arguments>
+                              </ui:InvokeWorkflowFile>
+                              <ui:Comment sap:VirtualizedContainerService.HintSize="376,55" sap2010:WorkflowViewState.IdRef="Comment_8" Text="----------------------&#xA;LL: Copy SO1 from shared drive to Local drive" />
+                              <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;{1}&quot; with &quot;$vCurDate$&quot; in &quot;$vSO1ReportPath$&quot; and assign output to $vSO1ReportFilePath$ " sap:VirtualizedContainerService.HintSize="376,59" sap2010:WorkflowViewState.IdRef="Replace_27" Input="[vSO1ReportPath]" IsBuilderTabModified="False" Pattern="\{1\}" RegexOption="IgnoreCase, Compiled" Replacement="[strCurDate]" Result="[vSO1ReportFilePath]">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:Replace>
+                              <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;{1}&quot; with &quot;$vCurDate$&quot; in &quot;$vSharedDriveSO1ReportPath$&quot; and assign output to $vSharedDriveSO1ReportFilePath$ " sap:VirtualizedContainerService.HintSize="376,59" sap2010:WorkflowViewState.IdRef="Replace_28" Input="[vSharedDriveSO1ReportPath]" IsBuilderTabModified="False" Pattern="\{1\}" RegexOption="IgnoreCase, Compiled" Replacement="[strCurDate]" Result="[vSharedDriveSO1ReportFilePath]">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:Replace>
+                              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NDR_CopySO1 workflow" sap:VirtualizedContainerService.HintSize="376,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="NDR\NDR_CopySO1.xaml">
+                                <ui:InvokeWorkflowFile.Arguments>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vSO1ReportPath">[vSO1ReportFilePath]</InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vSharedDriveSO1ReportPath">[vSharedDriveSO1ReportFilePath]</InOutArgument>
+                                </ui:InvokeWorkflowFile.Arguments>
+                              </ui:InvokeWorkflowFile>
+                              <ui:Comment sap:VirtualizedContainerService.HintSize="376,200" sap2010:WorkflowViewState.IdRef="Comment_10" Text="Convert UOM mapping from CSV to XLS&#xA;----------------------&#xA;============ pending CSV version of UOM Mapping ==========&#xA;----------------------&#xA;Get ID and MCC" />
+                              <Assign sap2010:Annotation.AnnotationText="Variable Operation: false To $vHasRunCheck$" DisplayName="Reset vHasRunCheck" sap:VirtualizedContainerService.HintSize="376,60" sap2010:WorkflowViewState.IdRef="Assign_26">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[strHasRunCheck]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">false</InArgument>
+                                </Assign.Value>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Assign>
+                              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NDR_GetID&amp;MCC workflow" sap:VirtualizedContainerService.HintSize="376,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="NDR\NDR_GetID&amp;MCC.xaml">
+                                <ui:InvokeWorkflowFile.Arguments>
+                                  <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[ConfigXLS]</InArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vCurDateTime">[strCurDateTime]</InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vHasSystemError">[strHasSystemError]</InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vMaxisCentreCode">[vMaxisCentreCode]</InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vSystemMessage">[strSystemMessage]</InOutArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="vHasRunCheck">[strHasRunCheck]</InOutArgument>
+                                </ui:InvokeWorkflowFile.Arguments>
+                              </ui:InvokeWorkflowFile>
+                              <ui:Comment sap:VirtualizedContainerService.HintSize="376,74" sap2010:WorkflowViewState.IdRef="Comment_9" Text="----------------------&#xA;Email Consolidated + Outlet Reports + Finding Reports" />
+                              <Sequence DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="376,721" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign sap2010:Annotation.AnnotationText="Variable Operation: [ATTN] NDR Findings for Consolidated DASIR + Outlet $vMaxisCentreCode$ To $vEmailSub$" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_27">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[vEmailSub]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">["[ATTN] NDR Findings for Consolidated DASIR + Outlet "+vMaxisCentreCode]</InArgument>
+                                  </Assign.Value>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </Assign>
+                                <If sap2010:Annotation.AnnotationText="If $vWaiverXLSFilePath$ Equal To (=) &quot;&quot; Then  " Condition="[vWaiverXLSFilePath = &quot;&quot;]" DisplayName="Check Waiver XLS FilePath" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="If_4">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="376,150.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;{1}&quot; with &quot;No&quot; in &quot;$vEmailBody$&quot; and assign output to $vEmailBody$ " sap:VirtualizedContainerService.HintSize="334,58.6666666666667" sap2010:WorkflowViewState.IdRef="Replace_21" Input="[vEmailPassTemplate]" IsBuilderTabModified="False" Pattern="\{1\}" RegexOption="IgnoreCase, Compiled" Replacement="No" Result="[vEmailBody]">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:Replace>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="376,150.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;{1}&quot; with &quot;Yes&quot; in &quot;$vEmailBody$&quot; and assign output to $vEmailBody$ " sap:VirtualizedContainerService.HintSize="334,58.6666666666667" sap2010:WorkflowViewState.IdRef="Replace_22" Input="[vEmailPassTemplate]" IsBuilderTabModified="False" Pattern="\{1\}" RegexOption="IgnoreCase, Compiled" Replacement="Yes" Result="[vEmailBody]">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:Replace>
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                                <If sap2010:Annotation.AnnotationText="If $vRebateXLSFilePath$ Equal To (=) &quot;&quot; Then  " Condition="[vRebateXLSFilePath = &quot;&quot;]" DisplayName="Check Rebate XLS FilePath" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="If_5">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="376,150.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;No&quot; with &quot;No&quot; in &quot;$vEmailBody$&quot; and assign output to $vEmailBody$ " sap:VirtualizedContainerService.HintSize="334,58.6666666666667" sap2010:WorkflowViewState.IdRef="Replace_23" Input="[vEmailBody]" IsBuilderTabModified="False" Pattern="\{2\}" RegexOption="IgnoreCase, Compiled" Replacement="No" Result="[vEmailBody]">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:Replace>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="376,150.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;Yes&quot; with &quot;Yes&quot; in &quot;$vEmailBody$&quot; and assign output to $vEmailBody$ " sap:VirtualizedContainerService.HintSize="334,58.6666666666667" sap2010:WorkflowViewState.IdRef="Replace_24" Input="[vEmailBody]" IsBuilderTabModified="False" Pattern="\{2\}" RegexOption="IgnoreCase, Compiled" Replacement="Yes" Result="[vEmailBody]">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:Replace>
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                                <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;$vEmailBodyConsol$&quot; with &quot;$vMaxisCentreCode$&quot; in &quot;$vEmailBodyConsol$&quot; and assign output to $vEmailBody$ " BuilderPattern="\{0\}" DisplayName="Replace {0} with vMaxisCentreCode - vEmailBody" sap:VirtualizedContainerService.HintSize="334,58.6666666666667" sap2010:WorkflowViewState.IdRef="Replace_25" Input="[vEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;\\{0\\}&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\{0\}" RegexOption="IgnoreCase" Replacement="[vMaxisCentreCode]" Result="[vEmailBody]">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:Replace>
+                                <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;$vEmailBodyConsol$&quot; with &quot;$vMaxisCentreCode$&quot; in &quot;$vEmailBodyConsol$&quot; and assign output to $vEmailBody$ " BuilderPattern="\{3\}" DisplayName="Replace {3} with vSignature - vEmailBody" sap:VirtualizedContainerService.HintSize="334,58.6666666666667" sap2010:WorkflowViewState.IdRef="Replace_26" Input="[vEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;\\{3\\}&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\{3\}" RegexOption="IgnoreCase" Replacement="[vSignature]" Result="[vEmailBody]">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:Replace>
+                                <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[vEmailBody]" Cc="[vEmailOpsPIC]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,149.333333333333" sap2010:WorkflowViewState.IdRef="SendOutlookMail_2" IsBodyHtml="True" IsDraft="False" Subject="[vEmailSub]" To="[vPICEmail]">
+                                  <ui:SendOutlookMail.Files>
+                                    <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                                      <InArgument x:TypeArguments="x:String">[vConsolReportFilePath]</InArgument>
+                                      <InArgument x:TypeArguments="x:String">[vFindingsXLSFilePath]</InArgument>
+                                    </scg:List>
+                                  </ui:SendOutlookMail.Files>
+                                </ui:SendOutlookMail>
+                              </Sequence>
+                            </Sequence>
+                          </TryCatch.Try>
+                          <TryCatch.Catches>
+                            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="422.666666666667,22" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ActivityAction x:TypeArguments="s:Exception">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                </ActivityAction.Argument>
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Fatal" Message="[exception.Message]" />
+                              </ActivityAction>
+                            </Catch>
+                          </TryCatch.Catches>
+                        </TryCatch>
+                      </Sequence>
+                    </ui:CommentOut.Body>
+                  </ui:CommentOut>
+                </Sequence>
+              </If.Then>
+            </If>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+    </ui:ForEachRow>
+  </Sequence>
+</Activity>

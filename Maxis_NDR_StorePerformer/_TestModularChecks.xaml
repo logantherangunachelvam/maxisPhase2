@@ -1,0 +1,254 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="_TestModularChecks" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="498,3127" sap2010:WorkflowViewState.IdRef="_TestModularChecks_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="22">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Security</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="19">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="_TestModularChecks" sap:VirtualizedContainerService.HintSize="478,3067" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="ConfigXLS" />
+      <Variable x:TypeArguments="x:String" Name="vXMLFilePath" />
+      <Variable x:TypeArguments="x:String" Name="vCanProceed" />
+      <Variable x:TypeArguments="x:String" Name="vHasError" />
+      <Variable x:TypeArguments="x:String" Name="vMessage" />
+      <Variable x:TypeArguments="x:String" Name="vSystemMessage" />
+      <Variable x:TypeArguments="x:String" Name="vHasSystemError" />
+      <Variable x:TypeArguments="x:String" Name="vPlaceholder" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, ss:SecureString))" Name="vMaxisCredDic" />
+      <Variable x:TypeArguments="x:String" Name="vConsolReportFilePath" />
+      <Variable x:TypeArguments="x:String" Name="vMaxisCentreCode" />
+      <Variable x:TypeArguments="x:String" Name="vCurDateTime" />
+      <Variable x:TypeArguments="x:String" Name="vDistinctID" />
+      <Variable x:TypeArguments="x:String" Name="vTransactionType" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Config_Init workflow" sap:VirtualizedContainerService.HintSize="436,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="NDR\Config_Init.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="out_ConfigXLS">[ConfigXLS]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFilePath">Data\MainConfig.xlsx</InArgument>
+        <InArgument x:TypeArguments="s:String[]" x:Key="in_ConfigSheets">[{"Main"}]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke InitMaxisCredentials workflow" sap:VirtualizedContainerService.HintSize="436,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Framework\InitMaxisCredentials.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, ss:SecureString))" x:Key="out_MaxisCred">[vMaxisCredDic]</OutArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[ConfigXLS]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <Assign sap:VirtualizedContainerService.HintSize="436,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[vXMLFilePath]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">C:\Maxis\NDR\50 Temp\BB04_580205085743_60139809051_CRP + DEVICE(BB04_GOEKULAN_ISELL_WM).xml</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke ModularCheck_R2 workflow" sap:VirtualizedContainerService.HintSize="436,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Checks\ModularCheck_R2.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[ConfigXLS]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="vPlaceholder">[vPlaceholder]</InOutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="vCanProceed">[vCanProceed]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="vHasError">[vHasError]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="vMessage">[vMessage]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="vXMLFilePath">[vXMLFilePath]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="vHasSystemError">[vHasSystemError]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="vSystemMessage">[vSystemMessage]</OutArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, ss:SecureString))" x:Key="vMaxisCredDic">[vMaxisCredDic]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,230" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[vDistinctID]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">60128522663</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <Assign sap:VirtualizedContainerService.HintSize="436,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[vMaxisCentreCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">BB04</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="436,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[vCurDateTime]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">02/28/2020 00:00:00</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,230" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[vConsolReportFilePath]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">C:\Maxis\NDR\10 Reports\Dasir &amp; Outlet\BB04\20200228_BB04_Dasir&amp;Outlet_Report.xls</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,257" sap2010:WorkflowViewState.IdRef="CommentOut_6">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,179" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NDR_CheckTransactionType workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="NDR\NDR_CheckTransactionType.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[ConfigXLS]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="vXMLFilePath">[vXMLFilePath]</InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="vTransactionType">[vTransactionType]</OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="vMessage">[vMessage]</OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="vHasError">[vHasError]</OutArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, ss:SecureString))" x:Key="vMaxisCredDic">[vMaxisCredDic]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="436,61" sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="[&quot;Check Transaction Type: &quot; + vTransactionType]" />
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,257" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,179" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NDR_ExtractOutletReport workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="NDR\NDR_ExtractOutletReport.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InOutArgument x:TypeArguments="x:String" x:Key="vCurDateTime">[vCurDateTime]</InOutArgument>
+              <InOutArgument x:TypeArguments="x:String" x:Key="vHasSystemError">[vHasSystemError]</InOutArgument>
+              <InOutArgument x:TypeArguments="x:String" x:Key="vMaxisCentreCode">[vMaxisCentreCode]</InOutArgument>
+              <InOutArgument x:TypeArguments="x:String" x:Key="vSystemMessage">[vSystemMessage]</InOutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="vWebBackstoreURL" xml:space="preserve">http://pyrdpos01/WebBS/Login.aspx </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="vPosType">["webpos"]</InArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[ConfigXLS]</InArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, ss:SecureString))" x:Key="vMaxisCredDic">[vMaxisCredDic]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,257" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,179" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NDR_ExtractiSellReports workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="NDR\NDR_ExtractiSellReports.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InOutArgument x:TypeArguments="x:String" x:Key="vCurDateTime">[vCurDateTime]</InOutArgument>
+              <InOutArgument x:TypeArguments="x:String" x:Key="vHasSystemError">[vHasSystemError]</InOutArgument>
+              <InOutArgument x:TypeArguments="x:String" x:Key="vMaxisCentreCode">[vMaxisCentreCode]</InOutArgument>
+              <InOutArgument x:TypeArguments="x:String" x:Key="vSystemMessage">[vSystemMessage]</InOutArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[ConfigXLS]</InArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, ss:SecureString))" x:Key="vMaxisCredDic">[vMaxisCredDic]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,257" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,179" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NDR_ConsolidateReports workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="NDR\NDR_ConsolidateReports.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InOutArgument x:TypeArguments="x:String" x:Key="vCurDateTime">[vCurDateTime]</InOutArgument>
+              <InOutArgument x:TypeArguments="x:String" x:Key="vHasSystemError">[vHasSystemError]</InOutArgument>
+              <InOutArgument x:TypeArguments="x:String" x:Key="vMaxisCentreCode">[vMaxisCentreCode]</InOutArgument>
+              <InOutArgument x:TypeArguments="x:String" x:Key="vSystemMessage">[vSystemMessage]</InOutArgument>
+              <InOutArgument x:TypeArguments="x:String" x:Key="vConsolReportFilePath">[vConsolReportFilePath]</InOutArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_ConfigXLS">[ConfigXLS]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="436,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;vCanProceed : &quot; + vCanProceed]" />
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="436,61" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;vHasError : &quot; + vHasError]" />
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="436,61" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[&quot;vMessage : &quot; + vMessage]" />
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="436,61" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[&quot;vHasSystemError : &quot; + vHasSystemError]" />
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="436,61" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="[&quot;vSystemMessage : &quot; + vSystemMessage]" />
+  </Sequence>
+</Activity>

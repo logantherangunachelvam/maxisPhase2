@@ -1,0 +1,1274 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="CheckDepositCollection" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="vHasError" Type="InOutArgument(x:String)" />
+    <x:Property Name="vHasSystemError" Type="InOutArgument(x:String)" />
+    <x:Property Name="vID" Type="InArgument(x:String)" />
+    <x:Property Name="vIDWorkingFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="vMessage" Type="InOutArgument(x:String)" />
+    <x:Property Name="vSystemMessage" Type="InOutArgument(x:String)" />
+    <x:Property Name="vCurDateTime" Type="InOutArgument(x:String)" />
+    <x:Property Name="in_ConfigXLS" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="vMaxisCredDic" Type="InArgument(scg:Dictionary(x:String, scg:Dictionary(x:String, ss:SecureString)))" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1715,14218</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="38">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.CSV.Activities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.CSV</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>UiPath.JSON.Activities</x:String>
+      <x:String>UiPath.REST.Activities</x:String>
+      <x:String>UiPath.SOAP.Activities</x:String>
+      <x:String>UiPath.XML.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>UiPath.Mail.IMAP.Activities</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.POP3.Activities</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.Web</x:String>
+      <x:String>UiPath.Orchestrator.Client</x:String>
+      <x:String>UiPath.Orchestrator.Client.Models</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Security</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="27">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>system</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web</AssemblyReference>
+      <AssemblyReference>UiPath.OrchestratorClient</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1695,14158" sap2010:WorkflowViewState.IdRef="Sequence_77">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vYtdDate" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="vAmount" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vHasResults" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vDate" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="vThresholdAmt" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vTableRowCount" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vCanProceed" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="vTotalAmount" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vHasThreshold" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vActualRateplan" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vMappingRatePlan" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vAccNo" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vThresholdMappingFilePath" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vDepositsFilePath" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vIndexValue" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vChromeBrowserPath" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vKenanWebURL" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vDepositsNewCSVFilePath" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vTaskname" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vThresholdMainSheet" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vMinusDays" />
+      <Variable x:TypeArguments="ui:Image" Name="screenshotImage" />
+      <Variable x:TypeArguments="x:String" Name="processStatus" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="CurrentTaskName" />
+      <Variable x:TypeArguments="x:String" Name="vDepositsCSVFilePath" />
+      <Variable x:TypeArguments="x:String" Name="vKenanUsername" />
+      <Variable x:TypeArguments="ss:SecureString" Name="vKenanPassword" />
+      <Variable x:TypeArguments="x:String" Name="vKenanLogin" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="1653,315" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[vThresholdMappingFilePath]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_ConfigXLS("vThresholdMappingFilePath")]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[vDepositsFilePath]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_ConfigXLS("vDepositsFilePath")]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[vChromeBrowserPath]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_ConfigXLS("vChromeBrowserPath")]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[vKenanWebURL]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_ConfigXLS("vKenanWebURL")]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[vThresholdMainSheet]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_ConfigXLS("vThresholdMainSheet")]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_12">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[vMinusDays]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_ConfigXLS("vMinusDays")]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_18">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[vKenanUsername]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[vMaxisCredDic("vKenanLogin").FirstOrDefault.Key]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_19">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="ss:SecureString">[vKenanPassword]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="ss:SecureString">[vMaxisCredDic("vKenanLogin").FirstOrDefault.Value]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+    </ui:MultipleAssign>
+    <ui:Comment sap:VirtualizedContainerService.HintSize="1653,55" sap2010:WorkflowViewState.IdRef="Comment_27" Text="----------------------&#xA;Initialise variables" />
+    <Assign sap:VirtualizedContainerService.HintSize="1653,60" sap2010:WorkflowViewState.IdRef="Assign_44">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[vTaskname]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">CheckDepositCollection</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap2010:Annotation.AnnotationText="Variable Operation: false To $vHasSystemError$" sap:VirtualizedContainerService.HintSize="1653,60" sap2010:WorkflowViewState.IdRef="Assign_45">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[vHasSystemError]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">false</InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <Assign sap2010:Annotation.AnnotationText="Variable Operation:  To $vSystemMessage$" sap:VirtualizedContainerService.HintSize="1653,60" sap2010:WorkflowViewState.IdRef="Assign_46">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[vSystemMessage]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap2010:Annotation.AnnotationText="Variable Operation: false To $vHasError$" sap:VirtualizedContainerService.HintSize="1653,60" sap2010:WorkflowViewState.IdRef="Assign_47">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[vHasError]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">false</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap2010:Annotation.AnnotationText="Variable Operation:  To $vMessage$" sap:VirtualizedContainerService.HintSize="1653,60" sap2010:WorkflowViewState.IdRef="Assign_48">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[vMessage]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+      </Assign.Value>
+    </Assign>
+    <TryCatch sap2010:Annotation.AnnotationText="Begin Error Handling; Action: Continue; Options: Variable Assignment,  Task Status: Pass" sap:VirtualizedContainerService.HintSize="1653,13116" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+      <TryCatch.Variables>
+        <Variable x:TypeArguments="scg:List(x:String)" Default="[New List(Of String)]" Name="IsAccNo" />
+        <Variable x:TypeArguments="scg:List(x:Int32)" Default="[New List(Of Integer)]" Name="IsThresholdAmt" />
+      </TryCatch.Variables>
+      <TryCatch.Try>
+        <Sequence DisplayName="First Try Catch Sequence" sap:VirtualizedContainerService.HintSize="1615,12867" sap2010:WorkflowViewState.IdRef="Sequence_75">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="ui:DatabaseConnection" Name="IDWorkingFilePathConnection" />
+            <Variable x:TypeArguments="sd:DataTable" Name="IDWorkingFilePathSQLDataSet" />
+            <Variable x:TypeArguments="x:Int32" Default="0" Name="Counter" />
+            <Variable x:TypeArguments="x:String" Name="vStrWorkingFilePath" />
+            <Variable x:TypeArguments="ui:GenericValue" Name="vWorkingFileSQLRows" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:Comment sap:VirtualizedContainerService.HintSize="1573,74" sap2010:WorkflowViewState.IdRef="Comment_28" Text="----------------------&#xA;Get rateplan from working file XLS for new line non-BMS transactions" />
+          <Assign sap2010:Annotation.AnnotationText="Variable Operation: 0 To $vThresholdAmt$" sap:VirtualizedContainerService.HintSize="1573,60" sap2010:WorkflowViewState.IdRef="Assign_49">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[vThresholdAmt]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">0</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
+          <Assign sap2010:Annotation.AnnotationText="Variable Operation: false To $vHasThreshold$" sap:VirtualizedContainerService.HintSize="1573,60" sap2010:WorkflowViewState.IdRef="Assign_50">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[vHasThreshold]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">false</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
+          <ui:DatabaseConnect sap2010:Annotation.AnnotationText="Connect to &quot;DBQ=$vIDWorkingFilePath$;Driver={Driver do Microsoft Excel(*.xls)};ReadOnly=1;Threads=3;UserCommitSync=Yes;HDR=Yes;&quot; Session:'IDWorkingFilePath'" DatabaseConnection="[IDWorkingFilePathConnection]" sap:VirtualizedContainerService.HintSize="1573,59" sap2010:WorkflowViewState.IdRef="DatabaseConnect_4" ProviderName="System.Data.Odbc" ConnectionString="[&quot;DBQ=&quot;+vIDWorkingFilePath+&quot;;Driver={Driver do Microsoft Excel(*.xls)};ReadOnly=1;Threads=3;UserCommitSync=Yes;HDR=Yes;&quot;]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:DatabaseConnect>
+          <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'SELECT DISTINCT [EXTERNAL_ACCOUNT_NO] FROM [Sheet1$] WHERE [NRIC/PP/BRN] = '$vID$'' Session:'IDWorkingFilePath'" CommandType="Text" DataTable="[IDWorkingFilePathSQLDataSet]" ExistingDbConnection="[IDWorkingFilePathConnection]" sap:VirtualizedContainerService.HintSize="1573,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_5" Sql="[&quot;SELECT DISTINCT [EXTERNAL_ACCOUNT_NO] FROM [Sheet1$] WHERE [NRIC/PP/BRN] = '&quot;+vID+&quot;'&quot;]">
+            <ui:ExecuteQuery.Parameters>
+              <scg:Dictionary x:TypeArguments="x:String, Argument" />
+            </ui:ExecuteQuery.Parameters>
+          </ui:ExecuteQuery>
+          <Assign sap:VirtualizedContainerService.HintSize="1573,60" sap2010:WorkflowViewState.IdRef="Assign_51">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[Counter]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">1</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:OutputDataTable DataTable="[IDWorkingFilePathSQLDataSet]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="1573,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[vStrWorkingFilePath]" />
+          <Assign sap:VirtualizedContainerService.HintSize="1573,60" sap2010:WorkflowViewState.IdRef="Assign_52">
+            <Assign.To>
+              <OutArgument x:TypeArguments="ui:GenericValue">[vWorkingFileSQLRows]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="ui:GenericValue">[IDWorkingFilePathSQLDataSet.Rows.Count]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:ForEachRow CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Start Loop &quot;Each row in SQL Data Set Session: IDWorkingFilePath&quot;" DataTable="[IDWorkingFilePathSQLDataSet]" sap:VirtualizedContainerService.HintSize="1573,4043" sap2010:WorkflowViewState.IdRef="ForEachRow_8">
+            <ui:ForEachRow.Body>
+              <ActivityAction x:TypeArguments="sd:DataRow">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="sd:DataRow" Name="item" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="IDWorkingFilePathSQLData Sequence" sap:VirtualizedContainerService.HintSize="897,3895" sap2010:WorkflowViewState.IdRef="Sequence_52">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="sd:DataTable" Name="IDWorkingFilePathSQLDataSet" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap2010:Annotation.AnnotationText="Variable Operation: 0 To $vThresholdAmt$" sap:VirtualizedContainerService.HintSize="855,60" sap2010:WorkflowViewState.IdRef="Assign_53">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Int32">[vThresholdAmt]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                    </Assign.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Assign>
+                  <AddToCollection x:TypeArguments="x:String" Collection="[IsAccNo]" DisplayName="Add to Acc No List - Add To Collection" sap:VirtualizedContainerService.HintSize="855,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_3" Item="[item(&quot;EXTERNAL_ACCOUNT_NO&quot;).ToString]" />
+                  <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'SELECT [Still Interim], [RATE_PLAN], [RISK_CATEGORY] FROM [Sheet1$] WHERE [EXTERNAL_ACCOUNT_NO] = '$Dataset Column(EXTERNAL_ACCOUNT_NO)$' AND (ISNULL([Transaction Type]) OR [Transaction Type] &lt;&gt; 'BMS') AND NOT ISNULL([RATE_PLAN]) AND [TYPE] = 'New Line'' Session:'IDWorkingFilePath'" CommandType="Text" DataTable="[IDWorkingFilePathSQLDataSet]" ExistingDbConnection="[IDWorkingFilePathConnection]" sap:VirtualizedContainerService.HintSize="855,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_6" Sql="[&quot;SELECT [Still Interim], [RATE_PLAN], [RISK_CATEGORY] FROM [Sheet1$] WHERE [EXTERNAL_ACCOUNT_NO] = '&quot;+item(&quot;EXTERNAL_ACCOUNT_NO&quot;).ToString()+&quot;' AND (ISNULL([Transaction Type]) OR [Transaction Type] &lt;&gt; 'BMS') AND NOT ISNULL([RATE_PLAN]) AND [TYPE] = 'New Line'&quot;]">
+                    <ui:ExecuteQuery.Parameters>
+                      <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                    </ui:ExecuteQuery.Parameters>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:ExecuteQuery>
+                  <ui:ForEachRow CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Start Loop &quot;Each row in SQL Data Set Session: IDWorkingFilePath&quot;" DataTable="[IDWorkingFilePathSQLDataSet]" sap:VirtualizedContainerService.HintSize="855,3413" sap2010:WorkflowViewState.IdRef="ForEachRow_7">
+                    <ui:ForEachRow.Body>
+                      <ActivityAction x:TypeArguments="sd:DataRow">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="sd:DataRow" Name="item" />
+                        </ActivityAction.Argument>
+                        <Sequence sap:VirtualizedContainerService.HintSize="805,3265" sap2010:WorkflowViewState.IdRef="Sequence_51">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap2010:Annotation.AnnotationText="Variable Operation: $Dataset Column(RATE_PLAN)$ To $vActualRateplan$" sap:VirtualizedContainerService.HintSize="763,60" sap2010:WorkflowViewState.IdRef="Assign_54">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[vActualRateplan]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[item("RATE_PLAN").ToString()]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                          <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;[^A-Za-z0-9-]&quot; with &quot;&quot; in &quot;$vActualRateplan$&quot; and assign output to $vActualRateplan$ " sap:VirtualizedContainerService.HintSize="763,59" sap2010:WorkflowViewState.IdRef="Replace_8" Input="[vActualRateplan]" IsBuilderTabModified="False" Pattern="%[^A-Za-z0-9-]" RegexOption="IgnoreCase, Compiled" Result="[vActualRateplan]">
+                            <ui:Replace.Replacement>
+                              <InArgument x:TypeArguments="x:String">
+                                <Literal x:TypeArguments="x:String" Value="" />
+                              </InArgument>
+                            </ui:Replace.Replacement>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:Replace>
+                          <If sap2010:Annotation.AnnotationText="If $Dataset Column(RATE_PLAN)$ Includes &quot;Flex&quot; OR $Dataset Column(RISK_CATEGORY)$ Includes &quot;C&quot; OR $Dataset Column(RISK_CATEGORY)$ Equal To (=) &quot;&quot; Then" Condition="[item(&quot;RATE_PLAN&quot;).ToString().Contains(&quot;Flex&quot;) or item(&quot;RISK_CATEGORY&quot;).ToString().Contains(&quot;C&quot;) or item(&quot;RISK_CATEGORY&quot;).ToString() = &quot;&quot;]" sap:VirtualizedContainerService.HintSize="763,2974" sap2010:WorkflowViewState.IdRef="If_21">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If.Then>
+                              <Sequence sap:VirtualizedContainerService.HintSize="618,2826" sap2010:WorkflowViewState.IdRef="Sequence_50">
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="ui:DatabaseConnection" Name="ThresholdMappingConnection" />
+                                  <Variable x:TypeArguments="sd:DataTable" Name="ThresholdMappingSQLDataSet" />
+                                </Sequence.Variables>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If sap2010:Annotation.AnnotationText="If $Dataset Column(RATE_PLAN)$ Includes &quot;Interim&quot; AND $Dataset Column(Still Interim)$ Equal To (=) &quot;&quot; Then" Condition="[item(&quot;RATE_PLAN&quot;).ToString().Contains(&quot;Interim&quot;) and item(&quot;Still Interim&quot;).ToString() = &quot;&quot;]" sap:VirtualizedContainerService.HintSize="576,262" sap2010:WorkflowViewState.IdRef="If_17">
+                                  <If.Then>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:Continue sap2010:Annotation.AnnotationText="Continue" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Continue_1">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:Continue>
+                                    </Sequence>
+                                  </If.Then>
+                                </If>
+                                <If sap2010:Annotation.AnnotationText="If $Dataset Column(RATE_PLAN)$ Includes &quot;Home Voice&quot; OR $Dataset Column(RATE_PLAN)$ Includes &quot;MaxisOne Home&quot; Then" Condition="[item(&quot;RATE_PLAN&quot;).ToString().Contains(&quot;Home Voice&quot;) or item(&quot;RATE_PLAN&quot;).ToString().Contains(&quot;MaxisOne Home&quot;)]" sap:VirtualizedContainerService.HintSize="576,262" sap2010:WorkflowViewState.IdRef="If_18">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_46">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:Continue sap2010:Annotation.AnnotationText="Continue" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Continue_2">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:Continue>
+                                    </Sequence>
+                                  </If.Then>
+                                </If>
+                                <ui:Comment sap:VirtualizedContainerService.HintSize="576,74" sap2010:WorkflowViewState.IdRef="Comment_29" Text="----------------------&#xA;Get total threshold amount from threshold mapping file" />
+                                <Assign sap2010:Annotation.AnnotationText="Variable Operation: false To $vHasThreshold$" sap:VirtualizedContainerService.HintSize="576,60" sap2010:WorkflowViewState.IdRef="Assign_55">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[vHasThreshold]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">false</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <ui:DatabaseConnect sap2010:Annotation.AnnotationText="Connect to &quot;DBQ=$vThresholdMappingFilePath$;Driver={Driver do Microsoft Excel(*.xls)};ReadOnly=1;Threads=3;UserCommitSync=Yes;HDR=Yes;&quot; Session:'ThresholdMapping'" DatabaseConnection="[ThresholdMappingConnection]" sap:VirtualizedContainerService.HintSize="576,59" sap2010:WorkflowViewState.IdRef="DatabaseConnect_5" ProviderName="System.Data.Odbc" ConnectionString="[&quot;DBQ=&quot;+vThresholdMappingFilePath+&quot;;Driver={Driver do Microsoft Excel(*.xls)};ReadOnly=1;Threads=3;UserCommitSync=Yes;HDR=Yes;&quot;]">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:DatabaseConnect>
+                                <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'SELECT [Rate Plan], [Adv Payment] FROM [$vThresholdMainSheet$$]' Session:'ThresholdMapping'" CommandType="Text" DataTable="[ThresholdMappingSQLDataSet]" ExistingDbConnection="[ThresholdMappingConnection]" sap:VirtualizedContainerService.HintSize="576,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_7" Sql="[&quot;SELECT [Rate Plan], [Adv Payment] FROM [&quot;+vThresholdMainSheet+&quot;$]&quot;]">
+                                  <ui:ExecuteQuery.Parameters>
+                                    <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                  </ui:ExecuteQuery.Parameters>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:ExecuteQuery>
+                                <ui:ForEachRow CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Start Loop &quot;Each row in SQL Data Set Session: ThresholdMapping&quot;" DataTable="[ThresholdMappingSQLDataSet]" sap:VirtualizedContainerService.HintSize="576,901" sap2010:WorkflowViewState.IdRef="ForEachRow_6">
+                                  <ui:ForEachRow.Body>
+                                    <ActivityAction x:TypeArguments="sd:DataRow">
+                                      <ActivityAction.Argument>
+                                        <DelegateInArgument x:TypeArguments="sd:DataRow" Name="item" />
+                                      </ActivityAction.Argument>
+                                      <Sequence sap:VirtualizedContainerService.HintSize="526,753" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <Assign sap2010:Annotation.AnnotationText="Variable Operation: $Dataset Column(Rate Plan)$ To $vMappingRatePlan$" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_56">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:String">[vMappingRatePlan]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:String">[item("Rate Plan").ToString()]</InArgument>
+                                          </Assign.Value>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </Assign>
+                                        <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;[^A-Za-z0-9-]&quot; with &quot;&quot; in &quot;$vMappingRatePlan$&quot; and assign output to $vMappingRatePlan$ " sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="Replace_9" Input="[vMappingRatePlan]" IsBuilderTabModified="False" Pattern="%[^A-Za-z0-9-]" RegexOption="IgnoreCase, Compiled" Result="[vMappingRatePlan]">
+                                          <ui:Replace.Replacement>
+                                            <InArgument x:TypeArguments="x:String">
+                                              <Literal x:TypeArguments="x:String" Value="" />
+                                            </InArgument>
+                                          </ui:Replace.Replacement>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ui:Replace>
+                                        <If sap2010:Annotation.AnnotationText="If $vMappingRatePlan$ Equal To (=) $vActualRateplan$ Then  " Condition="[vMappingRatePlan = vActualRateplan]" sap:VirtualizedContainerService.HintSize="484,462" sap2010:WorkflowViewState.IdRef="If_19">
+                                          <If.Then>
+                                            <Sequence sap:VirtualizedContainerService.HintSize="304,314" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                              <Assign sap2010:Annotation.AnnotationText="Variable Operation: true To $vHasThreshold$" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_57">
+                                                <Assign.To>
+                                                  <OutArgument x:TypeArguments="x:String">[vHasThreshold]</OutArgument>
+                                                </Assign.To>
+                                                <Assign.Value>
+                                                  <InArgument x:TypeArguments="x:String">true</InArgument>
+                                                </Assign.Value>
+                                              </Assign>
+                                              <Assign sap2010:Annotation.AnnotationText="Variable Operation: $Dataset Column(Adv Payment)$ + $vThresholdAmt$ To $vThresholdAmt$" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_58">
+                                                <Assign.To>
+                                                  <OutArgument x:TypeArguments="x:Int32">[vThresholdAmt]</OutArgument>
+                                                </Assign.To>
+                                                <Assign.Value>
+                                                  <InArgument x:TypeArguments="x:Int32">[CInt(item("Adv Payment").ToString()) + vThresholdAmt]</InArgument>
+                                                </Assign.Value>
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                              </Assign>
+                                              <ui:Break sap2010:Annotation.AnnotationText="Exit Loop" sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="Break_3" />
+                                            </Sequence>
+                                          </If.Then>
+                                        </If>
+                                      </Sequence>
+                                    </ActivityAction>
+                                  </ui:ForEachRow.Body>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:ForEachRow>
+                                <ui:DatabaseDisconnect sap2010:Annotation.AnnotationText="Disconnect from database Session:'ThresholdMapping'" DatabaseConnection="[ThresholdMappingConnection]" sap:VirtualizedContainerService.HintSize="576,22" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_4" />
+                                <If sap2010:Annotation.AnnotationText="If $vHasThreshold$ Equal To (=) &quot;false&quot; Then  " Condition="[vHasThreshold = &quot;false&quot;]" sap:VirtualizedContainerService.HintSize="576,524" sap2010:WorkflowViewState.IdRef="If_20">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="304,376" sap2010:WorkflowViewState.IdRef="Sequence_49">
+                                      <Sequence.Variables>
+                                        <Variable x:TypeArguments="ui:DatabaseConnection" Name="IDWorkingFilePathConnection" />
+                                      </Sequence.Variables>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <Assign sap2010:Annotation.AnnotationText="Variable Operation: true To $vHasError$" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_59">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[vHasError]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">true</InArgument>
+                                        </Assign.Value>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </Assign>
+                                      <Assign sap2010:Annotation.AnnotationText="Variable Operation: [$vTaskname$]: Check failed. Rateplan not found in threshold mapping file. Raise to RetailOps. To $vMessage$" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_60">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[vMessage]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">["["+vTaskname+"]: Check failed. Rateplan not found in threshold mapping file. Raise to RetailOps."]</InArgument>
+                                        </Assign.Value>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </Assign>
+                                      <ui:DatabaseDisconnect sap2010:Annotation.AnnotationText="Disconnect from database Session:'IDWorkingFilePath'" DatabaseConnection="[IDWorkingFilePathConnection]" sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_5" />
+                                      <Throw DisplayName="Throw StopWorkflow" Exception="[New NotImplementedException(&quot;StopWorkflow&quot;)]" sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                                    </Sequence>
+                                  </If.Then>
+                                </If>
+                                <Assign sap:VirtualizedContainerService.HintSize="576,60" sap2010:WorkflowViewState.IdRef="Assign_61">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="scg:List(x:Int32)">[IsThresholdAmt]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="scg:List(x:Int32)">[New List(Of Integer)]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <AddToCollection x:TypeArguments="x:Int32" Collection="[IsThresholdAmt]" DisplayName="Add Threshold Amount to List - Add To Collection" sap:VirtualizedContainerService.HintSize="576,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_4" Item="[vThresholdAmt]" />
+                              </Sequence>
+                            </If.Then>
+                          </If>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ForEachRow.Body>
+                  </ui:ForEachRow>
+                  <Assign sap:VirtualizedContainerService.HintSize="855,60" sap2010:WorkflowViewState.IdRef="Assign_62">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Int32">[Counter]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">[Counter + 1]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEachRow.Body>
+          </ui:ForEachRow>
+          <ui:DatabaseDisconnect sap2010:Annotation.AnnotationText="Disconnect from database Session:'IDWorkingFilePath'" DatabaseConnection="[IDWorkingFilePathConnection]" sap:VirtualizedContainerService.HintSize="1573,22" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_6">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:DatabaseDisconnect>
+          <ui:Comment sap:VirtualizedContainerService.HintSize="1573,74" sap2010:WorkflowViewState.IdRef="Comment_30" Text="----------------------&#xA;If able to get threshold amount, proceed to get payment collection amount in Kenan" />
+          <If sap2010:Annotation.AnnotationText="If $vHasThreshold$ Equal To (=) &quot;true&quot; Then  " Condition="[vHasThreshold = &quot;true&quot;]" sap:VirtualizedContainerService.HintSize="1573,7179" sap2010:WorkflowViewState.IdRef="If_31">
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="1428,7031" sap2010:WorkflowViewState.IdRef="Sequence_72">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="s:String[]" Name="IsAccNo_Arr" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:Comment sap:VirtualizedContainerService.HintSize="1386,55" sap2010:WorkflowViewState.IdRef="Comment_31" Text="----------------------&#xA;Set ytd's date" />
+                <Assign sap:VirtualizedContainerService.HintSize="1386,60" sap2010:WorkflowViewState.IdRef="Assign_64">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[vYtdDate]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[vCurDateTime]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Logic &quot;AddDays&quot; from MetaBot &quot;My MetaBots\Bot Store\Utility_DateTime.mbot&quot;" sap:VirtualizedContainerService.HintSize="1386,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_20" UnSafe="False" WorkflowFileName="Library\Bot Store\Utility_DateTime\Add_Days.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InOutArgument x:TypeArguments="x:String" x:Key="vStr">[vYtdDate]</InOutArgument>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="vOffset">[Integer.Parse(vMinusDays)]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="vDateTimeFormat">MM/dd/yyyy hh:mm:ss</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Logic &quot;FormatStringWithDateTime&quot; from MetaBot &quot;My MetaBots\Bot Store\Utility_DateTime.mbot&quot;" sap:VirtualizedContainerService.HintSize="1386,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_21" UnSafe="False" WorkflowFileName="Library\Bot Store\Utility_DateTime\Format_String_With_Date_time.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InOutArgument x:TypeArguments="x:String" x:Key="vStr">[vYtdDate]</InOutArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="vFormat">["yyyy-MM-dd"]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InvokeWorkflowFile>
+                <ui:Comment sap:VirtualizedContainerService.HintSize="1386,55" sap2010:WorkflowViewState.IdRef="Comment_32" Text="----------------------&#xA;Login to Kenan and navigate to search page" />
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Logic &quot;OpenKenanWeb&quot; from MetaBot &quot;My MetaBots\Kenan Web\KenanWeb_General.mbot&quot;" sap:VirtualizedContainerService.HintSize="1386,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_22" UnSafe="False" WorkflowFileName="Library\Kenan Web\KenanWeb_General\OpenKenanWeb.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="vBrowserPath">[vKenanWebURL]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Logic &quot;Login&quot; from MetaBot &quot;My MetaBots\Kenan Web\KenanWeb_General.mbot&quot;" DisplayName="InvokeWorkflowFile - HARDCODED CREDENTIALS" sap:VirtualizedContainerService.HintSize="1386,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_23" UnSafe="False" WorkflowFileName="Library\Kenan Web\KenanWeb_General\Login.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="vKenanUserId">[vKenanUsername]</InArgument>
+                    <InArgument x:TypeArguments="ss:SecureString" x:Key="vPassword">[vKenanPassword]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Logic &quot;NavigateToCustomerCenter&quot; from MetaBot &quot;My MetaBots\Kenan Web\KenanWeb_Index.mbot&quot;" sap:VirtualizedContainerService.HintSize="1386,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_24" UnSafe="False" WorkflowFileName="Library\Kenan Web\KenanWeb_Index\NavigateToCustomerCenter.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                  </ui:InvokeWorkflowFile.Arguments>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InvokeWorkflowFile>
+                <Assign DisplayName="Convert AccNo List to Array - Assign" sap:VirtualizedContainerService.HintSize="1386,60" sap2010:WorkflowViewState.IdRef="Assign_65">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="s:String[]">[IsAccNo_Arr]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="s:String[]">[IsAccNo.ToArray]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Start Loop &quot;List Variable $lsAccNo$&quot; " DisplayName="Kenan Loop - ForEach&lt;String&gt;" sap:VirtualizedContainerService.HintSize="1386,5641" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[IsAccNo_Arr]">
+                  <ui:ForEach.Body>
+                    <ActivityAction x:TypeArguments="x:String">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+                      </ActivityAction.Argument>
+                      <Sequence sap:VirtualizedContainerService.HintSize="1350,5507" sap2010:WorkflowViewState.IdRef="Sequence_71">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:Boolean" Name="fileExists" />
+                          <Variable x:TypeArguments="sd:DataTable" Name="csvDataTable" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:Comment sap:VirtualizedContainerService.HintSize="1308,55" sap2010:WorkflowViewState.IdRef="Comment_33" Text="----------------------&#xA;Initialise Kenan deposit table file path" />
+                        <Assign sap2010:Annotation.AnnotationText="Variable Operation: $lsAccNo$ To $vAccNo$" sap:VirtualizedContainerService.HintSize="1308,60" sap2010:WorkflowViewState.IdRef="Assign_66">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[vAccNo]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[item.ToString]</InArgument>
+                          </Assign.Value>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Assign>
+                        <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="1308,191" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+                          <ui:MultipleAssign.AssignOperations>
+                            <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_13">
+                                <ui:AssignOperation.To>
+                                  <OutArgument x:TypeArguments="x:String">[vDepositsCSVFilePath]</OutArgument>
+                                </ui:AssignOperation.To>
+                                <ui:AssignOperation.Value>
+                                  <InArgument x:TypeArguments="x:String">[vDepositsFilePath.Replace("{1}", vAccNo)]</InArgument>
+                                </ui:AssignOperation.Value>
+                              </ui:AssignOperation>
+                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_14">
+                                <ui:AssignOperation.To>
+                                  <OutArgument x:TypeArguments="x:String">[vDepositsCSVFilePath]</OutArgument>
+                                </ui:AssignOperation.To>
+                                <ui:AssignOperation.Value>
+                                  <InArgument x:TypeArguments="x:String">[vDepositsCSVFilePath.Replace("{2}", "csv")]</InArgument>
+                                </ui:AssignOperation.Value>
+                              </ui:AssignOperation>
+                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_15">
+                                <ui:AssignOperation.To>
+                                  <OutArgument x:TypeArguments="x:String">[vDepositsNewCSVFilePath]</OutArgument>
+                                </ui:AssignOperation.To>
+                                <ui:AssignOperation.Value>
+                                  <InArgument x:TypeArguments="x:String">[vDepositsFilePath.Replace("{1}", vAccNo)]</InArgument>
+                                </ui:AssignOperation.Value>
+                              </ui:AssignOperation>
+                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_16">
+                                <ui:AssignOperation.To>
+                                  <OutArgument x:TypeArguments="x:String">[vDepositsNewCSVFilePath]</OutArgument>
+                                </ui:AssignOperation.To>
+                                <ui:AssignOperation.Value>
+                                  <InArgument x:TypeArguments="x:String">[vDepositsNewCSVFilePath.Replace("{2}", "csv")]</InArgument>
+                                </ui:AssignOperation.Value>
+                              </ui:AssignOperation>
+                            </scg:List>
+                          </ui:MultipleAssign.AssignOperations>
+                        </ui:MultipleAssign>
+                        <ui:PathExists sap2010:Annotation.AnnotationText="If File Exists (&quot;$vPaymentsCSVFilePath$&quot;)  Then  (Wait up to 2 seconds - for File to exist)  " Exists="[fileExists]" sap:VirtualizedContainerService.HintSize="1308,89" sap2010:WorkflowViewState.IdRef="PathExists_5" Path="[vDepositsCSVFilePath]" PathType="File">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:PathExists>
+                        <If sap2010:Annotation.AnnotationText="If File Exists (&quot;$vPaymentsCSVFilePath$&quot;)  Then  (Wait up to 2 seconds - for File to exist)  " Condition="[fileExists]" sap:VirtualizedContainerService.HintSize="1308,262" sap2010:WorkflowViewState.IdRef="If_22">
+                          <If.Then>
+                            <Sequence sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_57">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:Delete ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Delete Files &quot;$vPaymentsCSVFilePath$&quot; " sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Delete_6" Path="[vDepositsCSVFilePath]">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:Delete>
+                            </Sequence>
+                          </If.Then>
+                        </If>
+                        <ui:PathExists sap2010:Annotation.AnnotationText="If File Exists (&quot;$vPaymentNewCSVFilePath$&quot;)  Then  (Wait up to 2 seconds - for File to exist)  " Exists="[fileExists]" sap:VirtualizedContainerService.HintSize="1308,89" sap2010:WorkflowViewState.IdRef="PathExists_6" Path="[vDepositsNewCSVFilePath]" PathType="File">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:PathExists>
+                        <If sap2010:Annotation.AnnotationText="If File Exists (&quot;$vPaymentNewCSVFilePath$&quot;)  Then  (Wait up to 2 seconds - for File to exist)  " Condition="[fileExists]" sap:VirtualizedContainerService.HintSize="1308,262" sap2010:WorkflowViewState.IdRef="If_23">
+                          <If.Then>
+                            <Sequence sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_58">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:Delete ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Delete Files &quot;$vPaymentNewCSVFilePath$&quot; " sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Delete_7" Path="[vDepositsNewCSVFilePath]" />
+                            </Sequence>
+                          </If.Then>
+                        </If>
+                        <ui:Comment sap:VirtualizedContainerService.HintSize="1308,74" sap2010:WorkflowViewState.IdRef="Comment_34" Text="----------------------&#xA;Search and click into account and navigate to payments page" />
+                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Logic &quot;SearchByAccount&quot; from MetaBot &quot;My MetaBots\Kenan Web\KenanWeb_CC.mbot&quot;" sap:VirtualizedContainerService.HintSize="1308,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_25" UnSafe="False" WorkflowFileName="Library\Kenan Web\KenanWeb_CC\SearchByAccount.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="vIDValue">[vAccNo]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="vIdentifierSearch">External Id</InArgument>
+                          </ui:InvokeWorkflowFile.Arguments>
+                        </ui:InvokeWorkflowFile>
+                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Logic &quot;ClickAccount&quot; from MetaBot &quot;My MetaBots\Kenan Web\KenanWeb_CC.mbot&quot;" sap:VirtualizedContainerService.HintSize="1308,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_26" UnSafe="False" WorkflowFileName="Library\Kenan Web\KenanWeb_CC\ClickAccount.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="vAccountNo">[vAccNo]</InArgument>
+                          </ui:InvokeWorkflowFile.Arguments>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:InvokeWorkflowFile>
+                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Logic &quot;ClickLink&quot; from MetaBot &quot;My MetaBots\Kenan Web\KenanWeb_AccountSummary.mbot&quot;" sap:VirtualizedContainerService.HintSize="1308,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_27" UnSafe="False" WorkflowFileName="Library\Kenan Web\KenanWeb_AccountSummary\ClickLink.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="vLink">Deposits</InArgument>
+                          </ui:InvokeWorkflowFile.Arguments>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:InvokeWorkflowFile>
+                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Logic &quot;ExportTabletoCSV&quot; from MetaBot &quot;My MetaBots\Kenan Web\KenanWeb_AccountSummary.mbot&quot;" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="1308,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_32" UnSafe="False" WorkflowFileName="Library\Kenan Web\KenanWeb_AccountSummary\GetDetailsTable.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <OutArgument x:TypeArguments="sd:DataTable" x:Key="PaymentDT">[csvDataTable]</OutArgument>
+                          </ui:InvokeWorkflowFile.Arguments>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:InvokeWorkflowFile>
+                        <Assign sap:VirtualizedContainerService.HintSize="1308,60" sap2010:WorkflowViewState.IdRef="Assign_84">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[vTableRowCount]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[csvDataTable.Rows.Count.ToString]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Sequence sap:VirtualizedContainerService.HintSize="1308,2260" sap2010:WorkflowViewState.IdRef="Sequence_86">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If sap2010:Annotation.AnnotationText="Else If $vTableRowCount$ Less than or Equal To(&lt;=) &quot;2&quot; Then  " Condition="[Integer.Parse(vTableRowCount) &lt;= 0]" sap:VirtualizedContainerService.HintSize="1266,2168" sap2010:WorkflowViewState.IdRef="If_36">
+                            <If.Then>
+                              <Sequence sap:VirtualizedContainerService.HintSize="304,252" sap2010:WorkflowViewState.IdRef="Sequence_78">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign sap2010:Annotation.AnnotationText="Variable Operation: true To $vHasError$" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_85">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[vHasError]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">true</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign sap2010:Annotation.AnnotationText="Variable Operation: $vMessage$&#xA;[$vTaskname$]: Adv payment not collected for acc: $vAccNo$ To $vMessage$" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_86">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[vMessage]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String" xml:space="preserve">[vMessage+Environment.NewLine+"	["+vTaskname+"]: Deposit not collected for acc: "+vAccNo]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </If.Then>
+                            <If.Else>
+                              <Sequence sap:VirtualizedContainerService.HintSize="917,2020" sap2010:WorkflowViewState.IdRef="Sequence_85">
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="csvDataTable" />
+                                  <Variable x:TypeArguments="x:String" Name="strDataTable" />
+                                </Sequence.Variables>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:Comment sap:VirtualizedContainerService.HintSize="875,74" sap2010:WorkflowViewState.IdRef="Comment_39" Text="----------------------&#xA;If not empty, export payments table to CSV then delete first row and save as XLS" />
+                                <Assign sap2010:Annotation.AnnotationText="Variable Operation: false To $vHasResults$" sap:VirtualizedContainerService.HintSize="875,60" sap2010:WorkflowViewState.IdRef="Assign_87">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[vHasResults]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">false</InArgument>
+                                  </Assign.Value>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </Assign>
+                                <Assign sap2010:Annotation.AnnotationText="Variable Operation: 0 To $vTotalAmount$" sap:VirtualizedContainerService.HintSize="875,60" sap2010:WorkflowViewState.IdRef="Assign_88">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Int32">[vTotalAmount]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign sap2010:Annotation.AnnotationText="Variable Operation: 0 To $vAmount$" sap:VirtualizedContainerService.HintSize="875,60" sap2010:WorkflowViewState.IdRef="Assign_89">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Int32">[vAmount]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <ui:ForEachRow CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Start Loop &quot;Each row in a CSV/Text file of Session: PaymentFile&quot;" DataTable="[csvDataTable]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="875,839" sap2010:WorkflowViewState.IdRef="ForEachRow_10">
+                                  <ui:ForEachRow.Body>
+                                    <ActivityAction x:TypeArguments="sd:DataRow">
+                                      <ActivityAction.Argument>
+                                        <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                                      </ActivityAction.Argument>
+                                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="705,691" sap2010:WorkflowViewState.IdRef="Sequence_81">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <If sap2010:Annotation.AnnotationText="If $Filedata Column(Transaction Date)$ Includes $vYtdDate$ Then  " Condition="[row(&quot;Transaction Date&quot;).ToString.Contains(vYtdDate)]" sap:VirtualizedContainerService.HintSize="663,599" sap2010:WorkflowViewState.IdRef="If_33">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <If.Then>
+                                            <Sequence sap:VirtualizedContainerService.HintSize="376,451" sap2010:WorkflowViewState.IdRef="Sequence_79">
+                                              <Sequence.Variables>
+                                                <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="matchCollection" />
+                                              </Sequence.Variables>
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                              <Assign sap2010:Annotation.AnnotationText="Variable Operation: true To $vHasResults$" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_90">
+                                                <Assign.To>
+                                                  <OutArgument x:TypeArguments="x:String">[vHasResults]</OutArgument>
+                                                </Assign.To>
+                                                <Assign.Value>
+                                                  <InArgument x:TypeArguments="x:String">true</InArgument>
+                                                </Assign.Value>
+                                              </Assign>
+                                              <ui:Matches sap2010:Annotation.AnnotationText="String Operation: Before-After &quot;$Filedata Column(Amount)$&quot;; Before: &quot;RM&quot; and assign output to $vAmount$" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="Matches_3" Input="[row(&quot;Amount&quot;).ToString]" IsBuilderTabModified="False" Pattern="(.*?)" RegexOption="IgnoreCase, Compiled" Result="[matchCollection]">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                              </ui:Matches>
+                                              <Assign sap2010:Annotation.AnnotationText="String Operation: Before-After &quot;$Filedata Column(Amount)$&quot;; Before: &quot;RM&quot; and assign output to $vAmount$" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_91">
+                                                <Assign.To>
+                                                  <OutArgument x:TypeArguments="x:Int32">[vAmount]</OutArgument>
+                                                </Assign.To>
+                                                <Assign.Value>
+                                                  <InArgument x:TypeArguments="x:Int32">[cInt(matchCollection.FirstOrDefault().Groups(1).Value.Trim)]</InArgument>
+                                                </Assign.Value>
+                                              </Assign>
+                                              <Assign sap2010:Annotation.AnnotationText="Variable Operation: $vTotalAmount$ + $vAmount$ To $vTotalAmount$" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_92">
+                                                <Assign.To>
+                                                  <OutArgument x:TypeArguments="x:Int32">[vTotalAmount]</OutArgument>
+                                                </Assign.To>
+                                                <Assign.Value>
+                                                  <InArgument x:TypeArguments="x:Int32">[vTotalAmount + vAmount]</InArgument>
+                                                </Assign.Value>
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                              </Assign>
+                                            </Sequence>
+                                          </If.Then>
+                                          <If.Else>
+                                            <Sequence sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_80">
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                              <ui:Break sap2010:Annotation.AnnotationText="Exit Loop" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Break_5" />
+                                            </Sequence>
+                                          </If.Else>
+                                        </If>
+                                      </Sequence>
+                                    </ActivityAction>
+                                  </ui:ForEachRow.Body>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:ForEachRow>
+                                <If sap2010:Annotation.AnnotationText="If $vHasResults$ Equal To (=) &quot;true&quot; Then  " Condition="[vHasResults = &quot;true&quot;]" sap:VirtualizedContainerService.HintSize="875,635" sap2010:WorkflowViewState.IdRef="If_35">
+                                  <If.Then>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="526,487" sap2010:WorkflowViewState.IdRef="Sequence_83">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:Comment sap:VirtualizedContainerService.HintSize="484,55" sap2010:WorkflowViewState.IdRef="Comment_40" Text="----------------------&#xA;Check if total amount &lt; threshold amount" />
+                                      <If sap2010:Annotation.AnnotationText="If $vTotalAmount$ Less Than(&lt;) $vThresholdAmt$ Then  " Condition="[vTotalAmount &lt; vThresholdAmt]" sap:VirtualizedContainerService.HintSize="484,300" sap2010:WorkflowViewState.IdRef="If_34">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <If.Then>
+                                          <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_82">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <Assign sap2010:Annotation.AnnotationText="Variable Operation: $vMessage$&#xA;[$vTaskname$]: Insufficient adv payment collected for acc: $vAccNo$ To $vMessage$" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_93">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:String">[vMessage]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:String" xml:space="preserve">[vMessage+Environment.NewLine+"	["+vTaskname + "]: Insufficient deposit collected for acc: " +vAccNo]</InArgument>
+                                              </Assign.Value>
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                            </Assign>
+                                          </Sequence>
+                                        </If.Then>
+                                      </If>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_84">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <Assign sap2010:Annotation.AnnotationText="Variable Operation: $vMessage$&#xA;[$vTaskname$]: Adv payment not collected for acc: $vAccNo$ To $vMessage$" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_94">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[vMessage]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String" xml:space="preserve">[vMessage+Environment.NewLine+"	["+vTaskname +"]: Deposit not collected for acc: "  + vAccNo]</InArgument>
+                                        </Assign.Value>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </Assign>
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                              </Sequence>
+                            </If.Else>
+                          </If>
+                        </Sequence>
+                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Logic &quot;ClickLink&quot; from MetaBot &quot;My MetaBots\Kenan Web\KenanWeb_AccountSummary.mbot&quot;" sap:VirtualizedContainerService.HintSize="1308,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_30" UnSafe="False" WorkflowFileName="Library\Kenan Web\KenanWeb_AccountSummary\ClickLink.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="vLink">["Details"]</InArgument>
+                          </ui:InvokeWorkflowFile.Arguments>
+                        </ui:InvokeWorkflowFile>
+                        <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="Keystrokes: [CTRL DOWN]w[CTRL UP] in &quot;Kenan Admin Application - *&quot;" ClickBeforeTyping="False" EmptyField="False" sap:VirtualizedContainerService.HintSize="1308,116" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="w" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;wnd app='*' title='Kenan Admin Application - *' /&gt;" WaitForReady="INTERACTIVE">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                            </ui:Target>
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                        <ui:PathExists sap2010:Annotation.AnnotationText="If File Exists (&quot;$vPaymentsCSVFilePath$&quot;)  Then  (Wait up to 2 seconds - for File to exist)  " Exists="[fileExists]" sap:VirtualizedContainerService.HintSize="1308,89" sap2010:WorkflowViewState.IdRef="PathExists_7" Path="[vDepositsCSVFilePath]" PathType="File" />
+                        <If sap2010:Annotation.AnnotationText="If File Exists (&quot;$vPaymentsCSVFilePath$&quot;)  Then  (Wait up to 2 seconds - for File to exist)  " Condition="[fileExists]" sap:VirtualizedContainerService.HintSize="1308,262" sap2010:WorkflowViewState.IdRef="If_29">
+                          <If.Then>
+                            <Sequence sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_69">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:Delete ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Delete Files &quot;$vPaymentsCSVFilePath$&quot; " sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Delete_8" Path="[vDepositsCSVFilePath]" />
+                            </Sequence>
+                          </If.Then>
+                        </If>
+                        <ui:PathExists sap2010:Annotation.AnnotationText="If File Exists (&quot;$vPaymentNewCSVFilePath$&quot;)  Then  (Wait up to 2 seconds - for File to exist)  " Exists="[fileExists]" sap:VirtualizedContainerService.HintSize="1308,89" sap2010:WorkflowViewState.IdRef="PathExists_8" Path="[vDepositsNewCSVFilePath]" PathType="File">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:PathExists>
+                        <If sap2010:Annotation.AnnotationText="If File Exists (&quot;$vPaymentNewCSVFilePath$&quot;)  Then  (Wait up to 2 seconds - for File to exist)  " Condition="[fileExists]" sap:VirtualizedContainerService.HintSize="1308,262" sap2010:WorkflowViewState.IdRef="If_30">
+                          <If.Then>
+                            <Sequence sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_70">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:Delete ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Delete Files &quot;$vPaymentNewCSVFilePath$&quot; " sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Delete_9" Path="[vDepositsNewCSVFilePath]" />
+                            </Sequence>
+                          </If.Then>
+                        </If>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEach.Body>
+                </ui:ForEach>
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Run Logic &quot;Logout&quot; from MetaBot &quot;My MetaBots\Kenan Web\KenanWeb_General.mbot&quot;" sap:VirtualizedContainerService.HintSize="1386,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_31" UnSafe="False" WorkflowFileName="Library\Kenan Web\KenanWeb_General\Logout.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:CloseWindow TimeoutMS="{x:Null}" UseWindow="{x:Null}" DisplayName="Close Window 'chrome.exe Kenan'" sap:VirtualizedContainerService.HintSize="1386,106" sap2010:WorkflowViewState.IdRef="CloseWindow_2" InformativeScreenshot="2b940614bd59432931eb7983c0418341" Selector="&lt;html app='chrome.exe' title='Kenan Admin Application Login' /&gt;" WaitForReady="INTERACTIVE" />
+              </Sequence>
+            </If.Then>
+          </If>
+          <ui:Comment sap:VirtualizedContainerService.HintSize="1573,55" sap2010:WorkflowViewState.IdRef="Comment_37" Text="----------------------&#xA;Finalize" />
+          <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;^\s+|\s+$&quot; with &quot;&quot; in &quot;$vMessage$&quot; and assign output to $vMessage$ " sap:VirtualizedContainerService.HintSize="1573,59" sap2010:WorkflowViewState.IdRef="Replace_14" Input="[vMessage]" IsBuilderTabModified="False" Pattern="^\s+|\s+$" RegexOption="IgnoreCase, Compiled" Result="[vMessage]">
+            <ui:Replace.Replacement>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" Value="" />
+              </InArgument>
+            </ui:Replace.Replacement>
+          </ui:Replace>
+          <If sap2010:Annotation.AnnotationText="If $vMessage$ Equal To (=) &quot;&quot; Then  " Condition="[vMessage = &quot;&quot;]" sap:VirtualizedContainerService.HintSize="1573,300" sap2010:WorkflowViewState.IdRef="If_32">
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_73">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap2010:Annotation.AnnotationText="Variable Operation: false To $vHasError$" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_79">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[vHasError]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">false</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_74">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap2010:Annotation.AnnotationText="Variable Operation: true To $vHasError$" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_80">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[vHasError]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">true</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:NotImplementedException" sap:VirtualizedContainerService.HintSize="1619,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:NotImplementedException">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:NotImplementedException" Name="exception" />
+            </ActivityAction.Argument>
+            <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_38" Text="// Stop Workflow" />
+          </ActivityAction>
+        </Catch>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="1619,21" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence sap:VirtualizedContainerService.HintSize="376,482" sap2010:WorkflowViewState.IdRef="Sequence_76">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_81">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[vHasSystemError]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">true</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_82">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[processStatus]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">Failed</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:Annotation.AnnotationText="Variable Operation: $vTaskname$ ($Error Line Number$): $Error Description$ To $vSystemMessage$" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_83">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[vSystemMessage]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[vTaskname+": "+exception.Message]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:LogMessage sap:VirtualizedContainerService.HintSize="334.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Process Status: Failed. Exception: &quot;+exception.Message]" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>

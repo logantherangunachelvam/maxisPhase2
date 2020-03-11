@@ -1,0 +1,164 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="GetFirstRowInfo" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="vCreatedDate" Type="OutArgument(x:String)" />
+    <x:Property Name="vCurrentStage" Type="OutArgument(x:String)" />
+    <x:Property Name="vMaxCounter" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:GetFirstRowInfo.vMaxCounter>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" Value="" />
+    </InArgument>
+  </this:GetFirstRowInfo.vMaxCounter>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>558,937</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.CSV.Activities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.CSV</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>UiPath.Mail.IMAP.Activities</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.POP3.Activities</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Orchestrator.Client</x:String>
+      <x:String>UiPath.Orchestrator.Client.Models</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.IO</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>system</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OrchestratorClient</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Get First Row Info RMA" sap:VirtualizedContainerService.HintSize="538,837" sap2010:WorkflowViewState.IdRef="Sequence_13">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="vExtractDataTable" />
+      <Variable x:TypeArguments="x:Int32" Name="vCounter" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser 'SearchRMA Page'" sap:VirtualizedContainerService.HintSize="496,545" sap2010:WorkflowViewState.IdRef="BrowserScope_2" InformativeScreenshot="c919f6e9758211e6cd06b36fcbb94540" Selector="&lt;html title='Search RMA Request' /&gt;">
+      <ui:BrowserScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,399" sap2010:WorkflowViewState.IdRef="Sequence_12">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:Int32" Default="0" Name="vRowCounter" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[vExtractDataTable]" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' class='Row' /&gt;&lt;/row&gt;&lt;column name='Column1' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='Row' /&gt;&lt;webctrl tag='td' class='DataCell' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column name='Column2' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='Row' /&gt;&lt;webctrl tag='td' class='DataCell' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column name='Column3' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='Row' /&gt;&lt;webctrl tag='td' class='DataCell' idx='3' /&gt;&lt;/column&gt;&lt;column name='Column4' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='Row' /&gt;&lt;webctrl tag='td' class='DataCell' idx='4' /&gt;&lt;/column&gt;&lt;column name='Column5' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='Row' /&gt;&lt;webctrl tag='td' class='DataCell' idx='5' /&gt;&lt;/column&gt;&lt;column name='Column6' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='Row' /&gt;&lt;webctrl tag='td' class='DataCell' idx='6' /&gt;&lt;/column&gt;&lt;column name='Column7' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='Row' /&gt;&lt;webctrl tag='td' class='DataCell' idx='7' /&gt;&lt;/column&gt;&lt;column name='Column8' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='Row' /&gt;&lt;webctrl tag='td' class='DataCell' idx='8' /&gt;&lt;/column&gt;&lt;column name='Column9' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='Row' /&gt;&lt;webctrl tag='td' class='DataCell' idx='9' /&gt;&lt;/column&gt;&lt;column name='Column10' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='Row' /&gt;&lt;webctrl tag='td' class='DataCell' idx='10' /&gt;&lt;/column&gt;&lt;column name='Column11' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='Row' /&gt;&lt;webctrl tag='td' class='DataCell' idx='11' /&gt;&lt;/column&gt;&lt;column name='Column12' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='Row' /&gt;&lt;webctrl tag='td' class='DataCell' idx='12' /&gt;&lt;/column&gt;&lt;column name='Column13' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='Row' /&gt;&lt;webctrl tag='td' class='DataCell' idx='13' /&gt;&lt;/column&gt;&lt;column name='Column14' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='Row' /&gt;&lt;webctrl tag='td' class='DataCell' idx='14' /&gt;&lt;/column&gt;&lt;column name='Column15' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='Row' /&gt;&lt;webctrl tag='td' class='DataCell' idx='15' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="ExtractData_2" MaxNumberOfResults="0" SimulateClick="True">
+              <ui:ExtractData.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="0f42457a52413120b07e26f8b133e2b0" Selector="&lt;webctrl parentid='ctl00_ContentPlaceHolder1_grdResult_dom' tag='TBODY' /&gt;" WaitForReady="COMPLETE">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                </ui:Target>
+              </ui:ExtractData.Target>
+            </ui:ExtractData>
+            <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[vCounter]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[vExtractDataTable.Rows.Count]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[vCounter.tostring]" />
+          </Sequence>
+        </ActivityAction>
+      </ui:BrowserScope.Body>
+    </ui:BrowserScope>
+    <Switch x:TypeArguments="x:Int32" DisplayName="Switch" Expression="[vCounter]" sap:VirtualizedContainerService.HintSize="496,160" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+      <Switch.Default>
+        <Sequence sap:VirtualizedContainerService.HintSize="304,252" sap2010:WorkflowViewState.IdRef="Sequence_16">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_23">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[vCurrentStage]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[vExtractDataTable.rows(0).Item(6).ToString]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_24">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[vCreatedDate]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[vExtractDataTable.Rows(0).Item(8).ToString]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </Switch.Default>
+      <Assign x:Key="99" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_15">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[vCurrentStage]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">Unable to search RMA</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign x:Key="0" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_16">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[vCurrentStage]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">No RMA results</InArgument>
+        </Assign.Value>
+      </Assign>
+    </Switch>
+  </Sequence>
+</Activity>

@@ -1,0 +1,1043 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="NDR_CheckFibrePair" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="vIDWorkingFilePath" Type="InOutArgument(x:String)" />
+    <x:Property Name="vFindingsXLSFilePath" Type="InOutArgument(x:String)" />
+    <x:Property Name="vDistinctID" Type="InOutArgument(x:String)" />
+    <x:Property Name="vHasSystemError" Type="InOutArgument(x:String)" />
+    <x:Property Name="vSystemMessage" Type="InOutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>2328,9273</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>UiPath.JSON.Activities</x:String>
+      <x:String>UiPath.REST.Activities</x:String>
+      <x:String>UiPath.SOAP.Activities</x:String>
+      <x:String>UiPath.XML.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>UiPath.Mail.IMAP.Activities</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.POP3.Activities</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>UiPath.Orchestrator.Client</x:String>
+      <x:String>UiPath.Orchestrator.Client.Models</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.CSV</x:String>
+      <x:String>UiPath.Web</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.CSV.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>system</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>UiPath.OrchestratorClient</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Web</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence sap:VirtualizedContainerService.HintSize="2308,9213" sap2010:WorkflowViewState.IdRef="Sequence_20">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Int32" Default="[]" Name="vResultsCount" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vFibreMSISDN" />
+      <Variable x:TypeArguments="x:Int32" Default="[]" Name="vFibreMSISDNLen" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vStatus" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vDasirRatePlan" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vUserID" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vType" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vExternalAccNo" />
+      <Variable x:TypeArguments="x:String" Default="NDR_CheckFibrePair" Name="vTaskname" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vHasHomeVoice" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vHasMaxisOneHome" />
+      <Variable x:TypeArguments="x:Int32" Default="[]" Name="vHomeVoiceCount" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vPrevType" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vPrevAccNo" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="vPrevUserID" />
+      <Variable x:TypeArguments="ui:Image" Name="screenshotImage" />
+      <Variable x:TypeArguments="x:String" Name="processStatus" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;&quot;]" Name="CurrentTaskName" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:Comment sap:VirtualizedContainerService.HintSize="2266,55" sap2010:WorkflowViewState.IdRef="Comment_1" Text="----------------------&#xA;Initialise variables" />
+    <Assign sap2010:Annotation.AnnotationText="Variable Operation: false To $vHasSystemError$" sap:VirtualizedContainerService.HintSize="2266,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[vHasSystemError]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">false</InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <Assign sap2010:Annotation.AnnotationText="Variable Operation:  To $vSystemMessage$" sap:VirtualizedContainerService.HintSize="2266,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[vSystemMessage]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <TryCatch sap2010:Annotation.AnnotationText="Begin Error Handling; Action: Continue; Options: Variable Assignment,  Task Status: Pass" sap:VirtualizedContainerService.HintSize="2266,8826" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch.Try>
+        <Sequence sap:VirtualizedContainerService.HintSize="2228,7759" sap2010:WorkflowViewState.IdRef="Sequence_16">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="ui:DatabaseConnection" Name="B1Connection" />
+            <Variable x:TypeArguments="sd:DataTable" Name="B1SQLDataSet" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap2010:Annotation.AnnotationText="Variable Operation: false To $vHasHomeVoice$" sap:VirtualizedContainerService.HintSize="2186,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[vHasHomeVoice]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">false</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
+          <Assign sap2010:Annotation.AnnotationText="Variable Operation: false To $vHasMaxisOneHome$" sap:VirtualizedContainerService.HintSize="2186,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[vHasMaxisOneHome]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">false</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap2010:Annotation.AnnotationText="Variable Operation: 0 To $vHomeVoiceCount$" sap:VirtualizedContainerService.HintSize="2186,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[vHomeVoiceCount]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">[0]</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
+          <ui:Comment sap:VirtualizedContainerService.HintSize="2186,55" sap2010:WorkflowViewState.IdRef="Comment_2" Text="----------------------&#xA;Read working file XLS into SQL DB" />
+          <ui:DatabaseConnect sap2010:Annotation.AnnotationText="Connect to &quot;DBQ=$vIDWorkingFilePath$;Driver={Driver do Microsoft Excel(*.xls)};ReadOnly=0;Threads=3;UserCommitSync=Yes;HDR=Yes;&quot; Session:'B1'" DatabaseConnection="[B1Connection]" sap:VirtualizedContainerService.HintSize="2186,59" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="System.Data.Odbc" ConnectionString="[&quot;DBQ=&quot;+vIDWorkingFilePath+&quot;;Driver={Driver do Microsoft Excel(*.xls)};ReadOnly=0;Threads=3;UserCommitSync=Yes;HDR=Yes;&quot;]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:DatabaseConnect>
+          <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'SELECT * FROM [Sheet1$] WHERE [NRIC/PP/BRN] = '$vDistinctID$'' Session:'B1'" CommandType="Text" DataTable="[B1SQLDataSet]" ExistingDbConnection="[B1Connection]" sap:VirtualizedContainerService.HintSize="2186,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;SELECT * FROM [Sheet1$] WHERE [NRIC/PP/BRN] = '&quot;+vDistinctID+&quot;'&quot;]">
+            <ui:ExecuteQuery.Parameters>
+              <scg:Dictionary x:TypeArguments="x:String, Argument" />
+            </ui:ExecuteQuery.Parameters>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ExecuteQuery>
+          <ui:ForEachRow CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Start Loop &quot;Each row in SQL Data Set Session: B1&quot;" DataTable="[B1SQLDataSet]" sap:VirtualizedContainerService.HintSize="2186,5749" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
+            <ui:ForEachRow.Body>
+              <ActivityAction x:TypeArguments="sd:DataRow">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="sd:DataRow" Name="item" />
+                </ActivityAction.Argument>
+                <Sequence sap:VirtualizedContainerService.HintSize="2136,5601" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:Comment sap:VirtualizedContainerService.HintSize="2094,55" sap2010:WorkflowViewState.IdRef="Comment_3" Text="----------------------&#xA;Initialise variables" />
+                  <Assign sap2010:Annotation.AnnotationText="Variable Operation:  To $vDasirRatePlan$" sap:VirtualizedContainerService.HintSize="2094,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[vDasirRatePlan]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap2010:Annotation.AnnotationText="Variable Operation:  To $vStatus$" sap:VirtualizedContainerService.HintSize="2094,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[vStatus]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap2010:Annotation.AnnotationText="Variable Operation:  To $vType$" sap:VirtualizedContainerService.HintSize="2094,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[vType]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </Assign.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Assign>
+                  <Assign sap2010:Annotation.AnnotationText="Variable Operation:  To $vExternalAccNo$" sap:VirtualizedContainerService.HintSize="2094,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[vExternalAccNo]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap2010:Annotation.AnnotationText="Variable Operation:  To $vUserID$" sap:VirtualizedContainerService.HintSize="2094,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[vUserID]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:Comment sap:VirtualizedContainerService.HintSize="2094,74" sap2010:WorkflowViewState.IdRef="Comment_4" Text="----------------------&#xA;Get Status, Type, External Acc No, MSISDN, User ID, Rateplan" />
+                  <Assign sap2010:Annotation.AnnotationText="Variable Operation: $Dataset Column(STATUS)$ To $vStatus$" sap:VirtualizedContainerService.HintSize="2094,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[vStatus]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[item("STATUS").ToString()]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap2010:Annotation.AnnotationText="Variable Operation: $Dataset Column(TYPE)$ To $vType$" sap:VirtualizedContainerService.HintSize="2094,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[vType]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[item("TYPE").ToString()]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap2010:Annotation.AnnotationText="Variable Operation: $Dataset Column(EXTERNAL_ACCOUNT_NO)$ To $vExternalAccNo$" sap:VirtualizedContainerService.HintSize="2094,60" sap2010:WorkflowViewState.IdRef="Assign_13">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[vExternalAccNo]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[item("EXTERNAL_ACCOUNT_NO").ToString()]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap2010:Annotation.AnnotationText="Variable Operation: $Dataset Column(USER_ID)$ To $vUserID$" sap:VirtualizedContainerService.HintSize="2094,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[vUserID]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[item("USER_ID").ToString()]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap2010:Annotation.AnnotationText="Variable Operation: $Dataset Column(RATE_PLAN)$ To $vDasirRatePlan$" sap:VirtualizedContainerService.HintSize="2094,60" sap2010:WorkflowViewState.IdRef="Assign_15">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[vDasirRatePlan]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[item("RATE_PLAN").ToString()]</InArgument>
+                    </Assign.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Assign>
+                  <ui:Replace sap2010:Annotation.AnnotationText="String Operation: Replace &quot;[^A-Za-z0-9-]&quot; with &quot;&quot; in &quot;$vDasirRatePlan$&quot; and assign output to $vDasirRatePlan$ " sap:VirtualizedContainerService.HintSize="2094,59" sap2010:WorkflowViewState.IdRef="Replace_1" Input="[vDasirRatePlan]" IsBuilderTabModified="False" Pattern="%[^A-Za-z0-9-]" RegexOption="IgnoreCase, Compiled" Result="[vDasirRatePlan]">
+                    <ui:Replace.Replacement>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </ui:Replace.Replacement>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:Replace>
+                  <ui:Comment sap:VirtualizedContainerService.HintSize="2094,74" sap2010:WorkflowViewState.IdRef="Comment_5" Text="----------------------&#xA;Check if dasir rateplan = MaxisOneHome and not MaxisOneHomeVoice" />
+                  <If sap2010:Annotation.AnnotationText="If $vDasirRatePlan$ Includes &quot;MaxisONEHome&quot; AND $vDasirRatePlan$ Does Not Include &quot;MaxisONEHomeVoice&quot; Then" Condition="[vDasirRatePlan.Contains(&quot;MaxisONEHome&quot;) and  not vDasirRatePlan.Contains(&quot;MaxisONEHomeVoice&quot;)]" sap:VirtualizedContainerService.HintSize="2094,300" sap2010:WorkflowViewState.IdRef="If_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap2010:Annotation.AnnotationText="Variable Operation: true To $vHasMaxisOneHome$" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_16">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[vHasMaxisOneHome]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">true</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                  <ui:Comment sap:VirtualizedContainerService.HintSize="2094,55" sap2010:WorkflowViewState.IdRef="Comment_6" Text="----------------------&#xA;Check if dasir rateplan = Home Voice" />
+                  <If sap2010:Annotation.AnnotationText="If $vDasirRatePlan$ Includes &quot;HomeVoice&quot; Then" Condition="[vDasirRatePlan.Contains(&quot;HomeVoice&quot;)]" sap:VirtualizedContainerService.HintSize="2094,3652" sap2010:WorkflowViewState.IdRef="If_7">
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="1949,3504" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="sd:DataTable" Name="B1SQLDataSet" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If sap2010:Annotation.AnnotationText="If $vHomeVoiceCount$ Not Equal To(&lt;&gt;) &quot;0&quot; AND $vPrevType$ Equal To (=) $vType$ AND $vPrevAccNo$ Equal To (=) $vExternalAccNo$ AND $vPrevUserID$ Equal To (=) $vUserID$ Then" Condition="[vHomeVoiceCount &lt;&gt; 0 and vPrevType = vType and vPrevAccNo = vExternalAccNo and vPrevUserID = vUserID]" sap:VirtualizedContainerService.HintSize="1907,262" sap2010:WorkflowViewState.IdRef="If_2">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <Sequence sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:Continue sap2010:Annotation.AnnotationText="Continue" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Continue_1">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:Continue>
+                            </Sequence>
+                          </If.Then>
+                        </If>
+                        <Assign sap2010:Annotation.AnnotationText="Variable Operation: 1 To $vHomeVoiceCount$" sap:VirtualizedContainerService.HintSize="1907,60" sap2010:WorkflowViewState.IdRef="Assign_17">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[vHomeVoiceCount]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[1]</InArgument>
+                          </Assign.Value>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Assign>
+                        <Assign sap2010:Annotation.AnnotationText="Variable Operation: true To $vHasHomeVoice$" sap:VirtualizedContainerService.HintSize="1907,60" sap2010:WorkflowViewState.IdRef="Assign_18">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[vHasHomeVoice]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">true</InArgument>
+                          </Assign.Value>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Assign>
+                        <Assign sap2010:Annotation.AnnotationText="Variable Operation: $vExternalAccNo$ To $vPrevAccNo$" sap:VirtualizedContainerService.HintSize="1907,60" sap2010:WorkflowViewState.IdRef="Assign_19">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[vPrevAccNo]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[vExternalAccNo]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:Annotation.AnnotationText="Variable Operation: $vType$ To $vPrevType$" sap:VirtualizedContainerService.HintSize="1907,60" sap2010:WorkflowViewState.IdRef="Assign_20">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[vPrevType]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[vType]</InArgument>
+                          </Assign.Value>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Assign>
+                        <Assign sap2010:Annotation.AnnotationText="Variable Operation: $vUserID$ To $vPrevUserID$" sap:VirtualizedContainerService.HintSize="1907,60" sap2010:WorkflowViewState.IdRef="Assign_21">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[vPrevUserID]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[vUserID]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ui:Comment sap:VirtualizedContainerService.HintSize="1907,55" sap2010:WorkflowViewState.IdRef="Comment_7" Text="----------------------&#xA;Check number of results found" />
+                        <Assign sap2010:Annotation.AnnotationText="Variable Operation:  To $vResultsCount$" sap:VirtualizedContainerService.HintSize="1907,60" sap2010:WorkflowViewState.IdRef="Assign_22">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[vResultsCount]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'SELECT COUNT(*) FROM [Sheet1$] WHERE [USER_ID] = '$vUserID$' AND [TYPE] = '$vType$' AND [STATUS] = '$vStatus$' AND [EXTERNAL_ACCOUNT_NO] = '$vExternalAccNo$' AND ([RATE_PLAN] LIKE '%MaxisOne Home%' OR [RATE_PLAN] LIKE '%Home Voice%') AND [NRIC/PP/BRN] = '$vDistinctID$'' Session:'B1'" CommandType="Text" DataTable="[B1SQLDataSet]" ExistingDbConnection="[B1Connection]" sap:VirtualizedContainerService.HintSize="1907,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_2" Sql="[&quot;SELECT COUNT(*) FROM [Sheet1$] WHERE [USER_ID] = '&quot;+vUserID+&quot;' AND [TYPE] = '&quot;+vType+&quot;' AND [STATUS] = '&quot;+vStatus+&quot;' AND [EXTERNAL_ACCOUNT_NO] = '&quot;+vExternalAccNo+&quot;' AND ([RATE_PLAN] LIKE '%MaxisOne Home%' OR [RATE_PLAN] LIKE '%Home Voice%') AND [NRIC/PP/BRN] = '&quot;+vDistinctID+&quot;'&quot;]">
+                          <ui:ExecuteQuery.Parameters>
+                            <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                          </ui:ExecuteQuery.Parameters>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:ExecuteQuery>
+                        <ui:ForEachRow CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Start Loop &quot;Each row in SQL Data Set Session: B1&quot;" DataTable="[B1SQLDataSet]" sap:VirtualizedContainerService.HintSize="1907,300" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                          <ui:ForEachRow.Body>
+                            <ActivityAction x:TypeArguments="sd:DataRow">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="sd:DataRow" Name="item" />
+                              </ActivityAction.Argument>
+                              <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign sap2010:Annotation.AnnotationText="Variable Operation: $Dataset Column(1)$ To $vResultsCount$" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_23">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Int32">[vResultsCount]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Int32">[Integer.Parse(item(0).ToString())]</InArgument>
+                                  </Assign.Value>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </Assign>
+                              </Sequence>
+                            </ActivityAction>
+                          </ui:ForEachRow.Body>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:ForEachRow>
+                        <ui:Comment sap:VirtualizedContainerService.HintSize="1907,93" sap2010:WorkflowViewState.IdRef="Comment_8" Text="----------------------&#xA;If fibre pair found (results count = 2), update done to working status of fibre line item with modem ID in Working File XLS" />
+                        <If sap2010:Annotation.AnnotationText="If $vResultsCount$ Equal To (=) &quot;2&quot; Then  " Condition="[vResultsCount = 2]" sap:VirtualizedContainerService.HintSize="1907,1439" sap2010:WorkflowViewState.IdRef="If_4">
+                          <If.Then>
+                            <Sequence sap:VirtualizedContainerService.HintSize="931,988" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="sd:DataTable" Name="B1SQLDataSet" />
+                              </Sequence.Variables>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'SELECT * FROM [Sheet1$] WHERE [USER_ID] = '$vUserID$' AND[TYPE] = '$vType$' AND [STATUS] = '$vStatus$' AND [EXTERNAL_ACCOUNT_NO] = '$vExternalAccNo$' AND [RATE_PLAN] LIKE '%HOME%' AND [NRIC/PP/BRN] = '$vDistinctID$'' Session:'B1'" CommandType="Text" DataTable="[B1SQLDataSet]" ExistingDbConnection="[B1Connection]" sap:VirtualizedContainerService.HintSize="889,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_3" Sql="[&quot;SELECT * FROM [Sheet1$] WHERE [USER_ID] = '&quot;+vUserID+&quot;' AND [TYPE] = '&quot;+vType+&quot;' AND [STATUS] = '&quot;+vStatus+&quot;' AND [EXTERNAL_ACCOUNT_NO] = '&quot;+vExternalAccNo+&quot;' AND [RATE_PLAN] LIKE '%HOME%' AND [NRIC/PP/BRN] = '&quot;+vDistinctID+&quot;'&quot;]">
+                                <ui:ExecuteQuery.Parameters>
+                                  <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                </ui:ExecuteQuery.Parameters>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:ExecuteQuery>
+                              <ui:ForEachRow CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Start Loop &quot;Each row in SQL Data Set Session: B1&quot;" DataTable="[B1SQLDataSet]" sap:VirtualizedContainerService.HintSize="889,768" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+                                <ui:ForEachRow.Body>
+                                  <ActivityAction x:TypeArguments="sd:DataRow">
+                                    <ActivityAction.Argument>
+                                      <DelegateInArgument x:TypeArguments="sd:DataRow" Name="item" />
+                                    </ActivityAction.Argument>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="839,620" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <Assign sap2010:Annotation.AnnotationText="Variable Operation: $Dataset Column(MSISDN)$ To $vFibreMSISDN$" sap:VirtualizedContainerService.HintSize="797,60" sap2010:WorkflowViewState.IdRef="Assign_24">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[vFibreMSISDN]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">[item("MSISDN").ToString()]</InArgument>
+                                        </Assign.Value>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </Assign>
+                                      <Assign sap2010:Annotation.AnnotationText="String Operation: Get length of &quot;$vFibreMSISDN$&quot; and assign output to $vFibreMSISDNLen$" sap:VirtualizedContainerService.HintSize="797,60" sap2010:WorkflowViewState.IdRef="Assign_29">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Int32">[vFibreMSISDNLen]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Int32">[vFibreMSISDN.Length]</InArgument>
+                                        </Assign.Value>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </Assign>
+                                      <If sap2010:Annotation.AnnotationText="If $vFibreMSISDNLen$ Less than or Equal To(&lt;=) &quot;9&quot; Then  " Condition="[vFibreMSISDNLen &lt;= 9]" sap:VirtualizedContainerService.HintSize="797,328" sap2010:WorkflowViewState.IdRef="If_3">
+                                        <If.Then>
+                                          <Sequence sap:VirtualizedContainerService.HintSize="376,180" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'UPDATE [Sheet1$] SET [Working Status] = 'Done', [Fibre] = 'True' ,[Pairing] = 'Paired' WHERE [USER_ID] = '$vUserID$' AND [STATUS] = '$vStatus$' AND [TYPE] = '$vType$' AND [RATE_PLAN] LIKE '%MAXISONE HOME%' AND [MSISDN] = '$vFibreMSISDN$' AND [NRIC/PP/BRN] = '$vDistinctID$'&#xA;'  Session: 'B1'" CommandType="Text" ExistingDbConnection="[B1Connection]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_1" Sql="[&quot;UPDATE [Sheet1$] SET [Working Status] = 'Done', [Fibre] = 'True' ,[Pairing] = 'Paired' WHERE [USER_ID] = '&quot;+vUserID+&quot;' AND [STATUS] = '&quot;+vStatus+&quot;' AND [TYPE] = '&quot;+vType+&quot;' AND [RATE_PLAN] LIKE '%MAXISONE HOME%' AND [MSISDN] = '&quot;+vFibreMSISDN+&quot;' AND [NRIC/PP/BRN] = '&quot;+vDistinctID+&quot;'&quot;]">
+                                              <ui:ExecuteNonQuery.Parameters>
+                                                <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                              </ui:ExecuteNonQuery.Parameters>
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                            </ui:ExecuteNonQuery>
+                                          </Sequence>
+                                        </If.Then>
+                                        <If.Else>
+                                          <Sequence sap:VirtualizedContainerService.HintSize="376,180" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'UPDATE [Sheet1$] SET [Fibre] = 'True' WHERE [USER_ID] = '$vUserID$' AND [STATUS] = '$vStatus$' AND [TYPE] = '$vType$' AND ([RATE_PLAN] LIKE '%MAXISONEHOMEVOICE%' OR [RATE_PLAN] LIKE '%HOME VOICE%') AND [MSISDN] = '$vFibreMSISDN$' AND [NRIC/PP/BRN] = '$vDistinctID$'&#xA;'  Session: 'B1'" CommandType="Text" ExistingDbConnection="[B1Connection]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_2" Sql="[&quot;UPDATE [Sheet1$] SET [Fibre] = 'True' WHERE [USER_ID] = '&quot;+vUserID+&quot;' AND [STATUS] = '&quot;+vStatus+&quot;' AND [TYPE] = '&quot;+vType+&quot;' AND ([RATE_PLAN] LIKE '%MAXISONEHOMEVOICE%' OR [RATE_PLAN] LIKE '%HOME VOICE%') AND [MSISDN] = '&quot;+vFibreMSISDN+&quot;' AND [NRIC/PP/BRN] = '&quot;+vDistinctID+&quot;'&quot;]">
+                                              <ui:ExecuteNonQuery.Parameters>
+                                                <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                              </ui:ExecuteNonQuery.Parameters>
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                            </ui:ExecuteNonQuery>
+                                          </Sequence>
+                                        </If.Else>
+                                      </If>
+                                    </Sequence>
+                                  </ActivityAction>
+                                </ui:ForEachRow.Body>
+                              </ui:ForEachRow>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence sap:VirtualizedContainerService.HintSize="931,1291" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="ui:DatabaseConnection" Name="B2Connection" />
+                                <Variable x:TypeArguments="sd:DataTable" Name="B1SQLDataSet" />
+                              </Sequence.Variables>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:Comment sap:VirtualizedContainerService.HintSize="889,74" sap2010:WorkflowViewState.IdRef="Comment_14" Text="----------------------&#xA;If fibre pair not found, read findings XLS into SQL DB and insert line item into findings XLS" />
+                              <ui:DatabaseConnect sap2010:Annotation.AnnotationText="Connect to &quot;DBQ=$vFindingsXLSFilePath$;Driver={Driver do Microsoft Excel(*.xls)};ReadOnly=0;Threads=3;UserCommitSync=Yes;HDR=Yes;&quot; Session:'B2'" DatabaseConnection="[B2Connection]" sap:VirtualizedContainerService.HintSize="889,59" sap2010:WorkflowViewState.IdRef="DatabaseConnect_4" ProviderName="System.Data.Odbc" ConnectionString="[&quot;DBQ=&quot;+vFindingsXLSFilePath+&quot;;Driver={Driver do Microsoft Excel(*.xls)};ReadOnly=0;Threads=3;UserCommitSync=Yes;HDR=Yes;&quot;]">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:DatabaseConnect>
+                              <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'SELECT * FROM [Sheet1$] WHERE [USER_ID] = '$vUserID$' AND [TYPE] = '$vType$' AND [STATUS] = '$vStatus$' AND [EXTERNAL_ACCOUNT_NO] = '$vExternalAccNo$' AND ([RATE_PLAN] LIKE '%MaxisOne Home%' OR [RATE_PLAN] LIKE '%Home Voice%') AND [NRIC/PP/BRN] = '$vDistinctID$'' Session:'B1'" CommandType="Text" DataTable="[B1SQLDataSet]" ExistingDbConnection="[B1Connection]" sap:VirtualizedContainerService.HintSize="889,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_6" Sql="[&quot;SELECT * FROM [Sheet1$] WHERE [USER_ID] = '&quot;+vUserID+&quot;' AND [TYPE] = '&quot;+vType+&quot;' AND [STATUS] = '&quot;+vStatus+&quot;' AND [EXTERNAL_ACCOUNT_NO] = '&quot;+vExternalAccNo+&quot;' AND ([RATE_PLAN] LIKE '%MaxisOne Home%' OR [RATE_PLAN] LIKE '%Home Voice%') AND [NRIC/PP/BRN] = '&quot;+vDistinctID+&quot;'&quot;]">
+                                <ui:ExecuteQuery.Parameters>
+                                  <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                </ui:ExecuteQuery.Parameters>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:ExecuteQuery>
+                              <ui:ForEachRow CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Start Loop &quot;Each row in SQL Data Set Session: B1&quot;" DataTable="[B1SQLDataSet]" sap:VirtualizedContainerService.HintSize="889,796" sap2010:WorkflowViewState.IdRef="ForEachRow_6">
+                                <ui:ForEachRow.Body>
+                                  <ActivityAction x:TypeArguments="sd:DataRow">
+                                    <ActivityAction.Argument>
+                                      <DelegateInArgument x:TypeArguments="sd:DataRow" Name="item" />
+                                    </ActivityAction.Argument>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="839,648" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <Assign sap2010:Annotation.AnnotationText="Variable Operation: $Dataset Column(MSISDN)$ To $vFibreMSISDN$" sap:VirtualizedContainerService.HintSize="797,60" sap2010:WorkflowViewState.IdRef="Assign_31">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[vFibreMSISDN]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">[item("MSISDN").ToString()]</InArgument>
+                                        </Assign.Value>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </Assign>
+                                      <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'UPDATE [Sheet1$] SET [Working Status] = 'Done', [Fibre] = 'True', [Pairing] = 'Not Paired' WHERE [USER_ID] = '$vUserID$' AND [STATUS] = '$vStatus$' AND [TYPE] = '$vType$' AND ([RATE_PLAN] LIKE '%MaxisOne Home%' OR [RATE_PLAN] LIKE '%Home Voice%') AND [MSISDN] = '$vFibreMSISDN$' AND [NRIC/PP/BRN] = '$vDistinctID$''  Session: 'B1'" CommandType="Text" ExistingDbConnection="[B1Connection]" sap:VirtualizedContainerService.HintSize="797,88" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_10" Sql="[&quot;UPDATE [Sheet1$] SET [Fibre] = 'True', [Pairing] = 'Not Paired' WHERE [USER_ID] = '&quot;+vUserID+&quot;' AND [STATUS] = '&quot;+vStatus+&quot;' AND [TYPE] = '&quot;+vType+&quot;' AND ([RATE_PLAN] LIKE '%MaxisOne Home%' OR [RATE_PLAN] LIKE '%Home Voice%') AND [MSISDN] = '&quot;+vFibreMSISDN+&quot;' AND [NRIC/PP/BRN] = '&quot;+vDistinctID+&quot;'&quot;]">
+                                        <ui:ExecuteNonQuery.Parameters>
+                                          <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                        </ui:ExecuteNonQuery.Parameters>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:ExecuteNonQuery>
+                                      <If sap2010:Annotation.AnnotationText="If $vResultsCount$ Greater than(&gt;) &quot;2&quot; Then  " Condition="[vResultsCount &gt; 2]" sap:VirtualizedContainerService.HintSize="797,328" sap2010:WorkflowViewState.IdRef="If_9">
+                                        <If.Then>
+                                          <Sequence sap:VirtualizedContainerService.HintSize="376,180" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'INSERT INTO [Sheet1$] ([Findings],[NO],[TYPES_OF_CHANNEL],[DATE],[USER_ID],[STATUS],[TYPE],[EXTERNAL_ACCOUNT_NO],[NAME],[NRIC/PP/BRN],[NRIC],[PASSPORT],[OLD_IC],[OTHER_IC],[BRN],[MKT_CODE],[RISK_CATEGORY],[RATE_PLAN],[EXCEPTIONAL_MDP],[CONTRACT],[MSISDN],[Article],[Description],[Sales Person],[Receipt No],[Sold Qty],[Mobile No],[IMEI No],[UOM Desc]) VALUES ('Unable to find fibre pair due to multiple fibre found','$Dataset Column(TYPES_OF_CHANNEL)$','$Dataset Column(TYPES_OF_CHANNEL)$','$Dataset Column(DATE)$','$Dataset Column(USER_ID)$','$Dataset Column(STATUS)$','$Dataset Column(TYPE)$','$Dataset Column(EXTERNAL_ACCOUNT_NO)$','$Dataset Column(NAME)$','$Dataset Column(NRIC/PP/BRN)$','$Dataset Column(NRIC)$','$Dataset Column(PASSPORT)$','$Dataset Column(OLD_IC)$','$Dataset Column(OTHER_IC)$','$Dataset Column(BRN)$','$Dataset Column(MKT_CODE)$','$Dataset Column(RISK_CATEGORY)$','$Dataset Column(RATE_PLAN)$','$Dataset Column(EXCEPTIONAL_MDP)$','$Dataset Column(CONTRACT)$','$Dataset Column(MSISDN)$','$Dataset Column(Article)$','$Dataset Column(Description)$','$Dataset Column(Sales Person)$','$Dataset Column(Receipt No)$','$Dataset Column(Sold Qty)$','$Dataset Column(Mobile No)$','$Dataset Column(IMEI No)$','$Dataset Column(UOM Desc)$')'  Session: 'B2'" CommandType="Text" ExistingDbConnection="[B2Connection]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_11" Sql="[&quot;INSERT INTO [Sheet1$] ([Findings],[NO],[TYPES_OF_CHANNEL],[DATE],[USER_ID],[STATUS],[TYPE],[EXTERNAL_ACCOUNT_NO],[NAME],[NRIC/PP/BRN],[NRIC],[PASSPORT],[OLD_IC],[OTHER_IC],[BRN],[MKT_CODE],[RISK_CATEGORY],[RATE_PLAN],[EXCEPTIONAL_MDP],[CONTRACT],[MSISDN],[Article],[Description],[Sales Person],[Receipt No],[Sold Qty],[Mobile No],[IMEI No],[UOM Desc]) VALUES ('Unable to find fibre pair due to multiple fibre found','&quot;+item(&quot;TYPES_OF_CHANNEL&quot;).ToString()+&quot;','&quot;+item(&quot;TYPES_OF_CHANNEL&quot;).ToString()+&quot;','&quot;+item(&quot;DATE&quot;).ToString()+&quot;','&quot;+item(&quot;USER_ID&quot;).ToString()+&quot;','&quot;+item(&quot;STATUS&quot;).ToString()+&quot;','&quot;+item(&quot;TYPE&quot;).ToString()+&quot;','&quot;+item(&quot;EXTERNAL_ACCOUNT_NO&quot;).ToString()+&quot;','&quot;+item(&quot;NAME&quot;).ToString()+&quot;','&quot;+item(&quot;NRIC/PP/BRN&quot;).ToString()+&quot;','&quot;+item(&quot;NRIC&quot;).ToString()+&quot;','&quot;+item(&quot;PASSPORT&quot;).ToString()+&quot;','&quot;+item(&quot;OLD_IC&quot;).ToString()+&quot;','&quot;+item(&quot;OTHER_IC&quot;).ToString()+&quot;','&quot;+item(&quot;BRN&quot;).ToString()+&quot;','&quot;+item(&quot;MKT_CODE&quot;).ToString()+&quot;','&quot;+item(&quot;RISK_CATEGORY&quot;).ToString()+&quot;','&quot;+item(&quot;RATE_PLAN&quot;).ToString()+&quot;','&quot;+item(&quot;EXCEPTIONAL_MDP&quot;).ToString()+&quot;','&quot;+item(&quot;CONTRACT&quot;).ToString()+&quot;','&quot;+item(&quot;MSISDN&quot;).ToString()+&quot;','&quot;+item(&quot;Article&quot;).ToString()+&quot;','&quot;+item(&quot;Description&quot;).ToString()+&quot;','&quot;+item(&quot;Sales Person&quot;).ToString()+&quot;','&quot;+item(&quot;Receipt No&quot;).ToString()+&quot;','&quot;+item(&quot;Sold Qty&quot;).ToString()+&quot;','&quot;+item(&quot;Mobile No&quot;).ToString()+&quot;','&quot;+item(&quot;IMEI No&quot;).ToString()+&quot;','&quot;+item(&quot;UOM Desc&quot;).ToString()+&quot;')&quot;]">
+                                              <ui:ExecuteNonQuery.Parameters>
+                                                <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                              </ui:ExecuteNonQuery.Parameters>
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                            </ui:ExecuteNonQuery>
+                                          </Sequence>
+                                        </If.Then>
+                                        <If.Else>
+                                          <Sequence sap:VirtualizedContainerService.HintSize="376,180" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'INSERT INTO [Sheet1$] ([Findings],[NO],[TYPES_OF_CHANNEL],[DATE],[USER_ID],[STATUS],[TYPE],[EXTERNAL_ACCOUNT_NO],[NAME],[NRIC/PP/BRN],[NRIC],[PASSPORT],[OLD_IC],[OTHER_IC],[BRN],[MKT_CODE],[RISK_CATEGORY],[RATE_PLAN],[EXCEPTIONAL_MDP],[CONTRACT],[MSISDN],[Article],[Description],[Sales Person],[Receipt No],[Sold Qty],[Mobile No],[IMEI No],[UOM Desc]) VALUES ('Unable to find fibre pair with completed status','$Dataset Column(TYPES_OF_CHANNEL)$','$Dataset Column(TYPES_OF_CHANNEL)$','$Dataset Column(DATE)$','$Dataset Column(USER_ID)$','$Dataset Column(STATUS)$','$Dataset Column(TYPE)$','$Dataset Column(EXTERNAL_ACCOUNT_NO)$','$Dataset Column(NAME)$','$Dataset Column(NRIC/PP/BRN)$','$Dataset Column(NRIC)$','$Dataset Column(PASSPORT)$','$Dataset Column(OLD_IC)$','$Dataset Column(OTHER_IC)$','$Dataset Column(BRN)$','$Dataset Column(MKT_CODE)$','$Dataset Column(RISK_CATEGORY)$','$Dataset Column(RATE_PLAN)$','$Dataset Column(EXCEPTIONAL_MDP)$','$Dataset Column(CONTRACT)$','$Dataset Column(MSISDN)$','$Dataset Column(Article)$','$Dataset Column(Description)$','$Dataset Column(Sales Person)$','$Dataset Column(Receipt No)$','$Dataset Column(Sold Qty)$','$Dataset Column(Mobile No)$','$Dataset Column(IMEI No)$','$Dataset Column(UOM Desc)$')'  Session: 'B2'" CommandType="Text" ExistingDbConnection="[B2Connection]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_12" Sql="[&quot;INSERT INTO [Sheet1$] ([Findings],[NO],[TYPES_OF_CHANNEL],[DATE],[USER_ID],[STATUS],[TYPE],[EXTERNAL_ACCOUNT_NO],[NAME],[NRIC/PP/BRN],[NRIC],[PASSPORT],[OLD_IC],[OTHER_IC],[BRN],[MKT_CODE],[RISK_CATEGORY],[RATE_PLAN],[EXCEPTIONAL_MDP],[CONTRACT],[MSISDN],[Article],[Description],[Sales Person],[Receipt No],[Sold Qty],[Mobile No],[IMEI No],[UOM Desc]) VALUES ('Unable to find fibre pair with completed status','&quot;+item(&quot;TYPES_OF_CHANNEL&quot;).ToString()+&quot;','&quot;+item(&quot;TYPES_OF_CHANNEL&quot;).ToString()+&quot;','&quot;+item(&quot;DATE&quot;).ToString()+&quot;','&quot;+item(&quot;USER_ID&quot;).ToString()+&quot;','&quot;+item(&quot;STATUS&quot;).ToString()+&quot;','&quot;+item(&quot;TYPE&quot;).ToString()+&quot;','&quot;+item(&quot;EXTERNAL_ACCOUNT_NO&quot;).ToString()+&quot;','&quot;+item(&quot;NAME&quot;).ToString()+&quot;','&quot;+item(&quot;NRIC/PP/BRN&quot;).ToString()+&quot;','&quot;+item(&quot;NRIC&quot;).ToString()+&quot;','&quot;+item(&quot;PASSPORT&quot;).ToString()+&quot;','&quot;+item(&quot;OLD_IC&quot;).ToString()+&quot;','&quot;+item(&quot;OTHER_IC&quot;).ToString()+&quot;','&quot;+item(&quot;BRN&quot;).ToString()+&quot;','&quot;+item(&quot;MKT_CODE&quot;).ToString()+&quot;','&quot;+item(&quot;RISK_CATEGORY&quot;).ToString()+&quot;','&quot;+item(&quot;RATE_PLAN&quot;).ToString()+&quot;','&quot;+item(&quot;EXCEPTIONAL_MDP&quot;).ToString()+&quot;','&quot;+item(&quot;CONTRACT&quot;).ToString()+&quot;','&quot;+item(&quot;MSISDN&quot;).ToString()+&quot;','&quot;+item(&quot;Article&quot;).ToString()+&quot;','&quot;+item(&quot;Description&quot;).ToString()+&quot;','&quot;+item(&quot;Sales Person&quot;).ToString()+&quot;','&quot;+item(&quot;Receipt No&quot;).ToString()+&quot;','&quot;+item(&quot;Sold Qty&quot;).ToString()+&quot;','&quot;+item(&quot;Mobile No&quot;).ToString()+&quot;','&quot;+item(&quot;IMEI No&quot;).ToString()+&quot;','&quot;+item(&quot;UOM Desc&quot;).ToString()+&quot;')&quot;]">
+                                              <ui:ExecuteNonQuery.Parameters>
+                                                <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                              </ui:ExecuteNonQuery.Parameters>
+                                            </ui:ExecuteNonQuery>
+                                          </Sequence>
+                                        </If.Else>
+                                      </If>
+                                    </Sequence>
+                                  </ActivityAction>
+                                </ui:ForEachRow.Body>
+                              </ui:ForEachRow>
+                              <ui:DatabaseDisconnect sap2010:Annotation.AnnotationText="Disconnect from database Session:'B2'" DatabaseConnection="[B2Connection]" sap:VirtualizedContainerService.HintSize="889,22" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_4">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:DatabaseDisconnect>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                        <ui:Comment sap:VirtualizedContainerService.HintSize="1907,74" sap2010:WorkflowViewState.IdRef="Comment_10" Text="----------------------&#xA;If fibre pair not found, read findings XLS into SQL DB and insert line item into findings XLS" />
+                        <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1907,221" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+                          <ui:CommentOut.Body>
+                            <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,143" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If sap2010:Annotation.AnnotationText="If $vResultsCount$ Not Equal To (&lt;&gt;) &quot;2&quot; Then  " Condition="[vResultsCount &lt;&gt; 2]" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_6">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If.Then>
+                                  <Sequence sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                    <Sequence.Variables>
+                                      <Variable x:TypeArguments="ui:DatabaseConnection" Name="B2Connection" />
+                                      <Variable x:TypeArguments="sd:DataTable" Name="B1SQLDataSet" />
+                                    </Sequence.Variables>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:DatabaseConnect sap2010:Annotation.AnnotationText="Connect to &quot;DBQ=$vFindingsXLSFilePath$;Driver={Driver do Microsoft Excel(*.xls)};ReadOnly=0;Threads=3;UserCommitSync=Yes;HDR=Yes;&quot; Session:'B2'" DatabaseConnection="[B2Connection]" sap:VirtualizedContainerService.HintSize="889,59" sap2010:WorkflowViewState.IdRef="DatabaseConnect_2" ProviderName="System.Data.Odbc" ConnectionString="[&quot;DBQ=&quot;+vFindingsXLSFilePath+&quot;;Driver={Driver do Microsoft Excel(*.xls)};ReadOnly=0;Threads=3;UserCommitSync=Yes;HDR=Yes;&quot;]">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:DatabaseConnect>
+                                    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'SELECT * FROM [Sheet1$] WHERE [USER_ID] = '$vUserID$' AND [TYPE] = '$vType$' AND [STATUS] = '$vStatus$' AND [EXTERNAL_ACCOUNT_NO] = '$vExternalAccNo$' AND ([RATE_PLAN] LIKE '%MaxisOne Home%' OR [RATE_PLAN] LIKE '%Home Voice%') AND [NRIC/PP/BRN] = '$vDistinctID$'' Session:'B1'" CommandType="Text" DataTable="[B1SQLDataSet]" ExistingDbConnection="[B1Connection]" sap:VirtualizedContainerService.HintSize="889,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_4" Sql="[&quot;SELECT * FROM [Sheet1$] WHERE [USER_ID] = '&quot;+vUserID+&quot;' AND [TYPE] = '&quot;+vType+&quot;' AND [STATUS] = '&quot;+vStatus+&quot;' AND [EXTERNAL_ACCOUNT_NO] = '&quot;+vExternalAccNo+&quot;' AND ([RATE_PLAN] LIKE '%MaxisOne Home%' OR [RATE_PLAN] LIKE '%Home Voice%') AND [NRIC/PP/BRN] = '&quot;+vDistinctID+&quot;'&quot;]">
+                                      <ui:ExecuteQuery.Parameters>
+                                        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                      </ui:ExecuteQuery.Parameters>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:ExecuteQuery>
+                                    <ui:ForEachRow CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Start Loop &quot;Each row in SQL Data Set Session: B1&quot;" DataTable="[B1SQLDataSet]" sap:VirtualizedContainerService.HintSize="889,1094" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
+                                      <ui:ForEachRow.Body>
+                                        <ActivityAction x:TypeArguments="sd:DataRow">
+                                          <ActivityAction.Argument>
+                                            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="item" />
+                                          </ActivityAction.Argument>
+                                          <Sequence sap:VirtualizedContainerService.HintSize="839,946" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <Assign sap2010:Annotation.AnnotationText="Variable Operation: $Dataset Column(MSISDN)$ To $vFibreMSISDN$" sap:VirtualizedContainerService.HintSize="797,60" sap2010:WorkflowViewState.IdRef="Assign_25">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:String">[vFibreMSISDN]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:String">[item("MSISDN").ToString()]</InArgument>
+                                              </Assign.Value>
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                            </Assign>
+                                            <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'UPDATE [Sheet1$] SET [Working Status] = 'Done', [Fibre] = 'True', [Pairing] = 'Not Paired' WHERE [USER_ID] = '$vUserID$' AND [STATUS] = '$vStatus$' AND [TYPE] = '$vType$' AND ([RATE_PLAN] LIKE '%MaxisOne Home%' OR [RATE_PLAN] LIKE '%Home Voice%') AND [MSISDN] = '$vFibreMSISDN$' AND [NRIC/PP/BRN] = '$vDistinctID$''  Session: 'B1'" CommandType="Text" ExistingDbConnection="[B1Connection]" sap:VirtualizedContainerService.HintSize="797,88" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_3" Sql="[&quot;UPDATE [Sheet1$] SET [Fibre] = 'True', [Pairing] = 'Not Paired' WHERE [USER_ID] = '&quot;+vUserID+&quot;' AND [STATUS] = '&quot;+vStatus+&quot;' AND [TYPE] = '&quot;+vType+&quot;' AND ([RATE_PLAN] LIKE '%MaxisOne Home%' OR [RATE_PLAN] LIKE '%Home Voice%') AND [MSISDN] = '&quot;+vFibreMSISDN+&quot;' AND [NRIC/PP/BRN] = '&quot;+vDistinctID+&quot;'&quot;]">
+                                              <ui:ExecuteNonQuery.Parameters>
+                                                <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                              </ui:ExecuteNonQuery.Parameters>
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                            </ui:ExecuteNonQuery>
+                                            <ui:CommentOut DisplayName="Comment Out - Causes Skipping" sap:VirtualizedContainerService.HintSize="797,258" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+                                              <ui:CommentOut.Body>
+                                                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,180" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'UPDATE [Sheet1$] SET [Working Status] = 'Done', [Fibre] = 'True', [Pairing] = 'Not Paired' WHERE [USER_ID] = '$vUserID$' AND [STATUS] = '$vStatus$' AND [TYPE] = '$vType$' AND ([RATE_PLAN] LIKE '%MaxisOne Home%' OR [RATE_PLAN] LIKE '%Home Voice%') AND [MSISDN] = '$vFibreMSISDN$' AND [NRIC/PP/BRN] = '$vDistinctID$''  Session: 'B1'" CommandType="Text" DisplayName="Execute non query" ExistingDbConnection="[B1Connection]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_8" Sql="[&quot;UPDATE [Sheet1$] SET [Working Status] = 'Done', [Fibre] = 'True', [Pairing] = 'Not Paired' WHERE [USER_ID] = '&quot;+vUserID+&quot;' AND [STATUS] = '&quot;+vStatus+&quot;' AND [TYPE] = '&quot;+vType+&quot;' AND ([RATE_PLAN] LIKE '%MaxisOne Home%' OR [RATE_PLAN] LIKE '%Home Voice%') AND [MSISDN] = '&quot;+vFibreMSISDN+&quot;' AND [NRIC/PP/BRN] = '&quot;+vDistinctID+&quot;'&quot;]">
+                                                    <ui:ExecuteNonQuery.Parameters>
+                                                      <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                                    </ui:ExecuteNonQuery.Parameters>
+                                                  </ui:ExecuteNonQuery>
+                                                </Sequence>
+                                              </ui:CommentOut.Body>
+                                            </ui:CommentOut>
+                                            <If sap2010:Annotation.AnnotationText="If $vResultsCount$ Greater than(&gt;) &quot;2&quot; Then  " Condition="[vResultsCount &gt; 2]" sap:VirtualizedContainerService.HintSize="797,328" sap2010:WorkflowViewState.IdRef="If_5">
+                                              <If.Then>
+                                                <Sequence sap:VirtualizedContainerService.HintSize="376,180" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'INSERT INTO [Sheet1$] ([Findings],[NO],[TYPES_OF_CHANNEL],[DATE],[USER_ID],[STATUS],[TYPE],[EXTERNAL_ACCOUNT_NO],[NAME],[NRIC/PP/BRN],[NRIC],[PASSPORT],[OLD_IC],[OTHER_IC],[BRN],[MKT_CODE],[RISK_CATEGORY],[RATE_PLAN],[EXCEPTIONAL_MDP],[CONTRACT],[MSISDN],[Article],[Description],[Sales Person],[Receipt No],[Sold Qty],[Mobile No],[IMEI No],[UOM Desc]) VALUES ('Unable to find fibre pair due to multiple fibre found','$Dataset Column(TYPES_OF_CHANNEL)$','$Dataset Column(TYPES_OF_CHANNEL)$','$Dataset Column(DATE)$','$Dataset Column(USER_ID)$','$Dataset Column(STATUS)$','$Dataset Column(TYPE)$','$Dataset Column(EXTERNAL_ACCOUNT_NO)$','$Dataset Column(NAME)$','$Dataset Column(NRIC/PP/BRN)$','$Dataset Column(NRIC)$','$Dataset Column(PASSPORT)$','$Dataset Column(OLD_IC)$','$Dataset Column(OTHER_IC)$','$Dataset Column(BRN)$','$Dataset Column(MKT_CODE)$','$Dataset Column(RISK_CATEGORY)$','$Dataset Column(RATE_PLAN)$','$Dataset Column(EXCEPTIONAL_MDP)$','$Dataset Column(CONTRACT)$','$Dataset Column(MSISDN)$','$Dataset Column(Article)$','$Dataset Column(Description)$','$Dataset Column(Sales Person)$','$Dataset Column(Receipt No)$','$Dataset Column(Sold Qty)$','$Dataset Column(Mobile No)$','$Dataset Column(IMEI No)$','$Dataset Column(UOM Desc)$')'  Session: 'B2'" CommandType="Text" ExistingDbConnection="[B2Connection]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_4" Sql="[&quot;INSERT INTO [Sheet1$] ([Findings],[NO],[TYPES_OF_CHANNEL],[DATE],[USER_ID],[STATUS],[TYPE],[EXTERNAL_ACCOUNT_NO],[NAME],[NRIC/PP/BRN],[NRIC],[PASSPORT],[OLD_IC],[OTHER_IC],[BRN],[MKT_CODE],[RISK_CATEGORY],[RATE_PLAN],[EXCEPTIONAL_MDP],[CONTRACT],[MSISDN],[Article],[Description],[Sales Person],[Receipt No],[Sold Qty],[Mobile No],[IMEI No],[UOM Desc]) VALUES ('Unable to find fibre pair due to multiple fibre found','&quot;+item(&quot;TYPES_OF_CHANNEL&quot;).ToString()+&quot;','&quot;+item(&quot;TYPES_OF_CHANNEL&quot;).ToString()+&quot;','&quot;+item(&quot;DATE&quot;).ToString()+&quot;','&quot;+item(&quot;USER_ID&quot;).ToString()+&quot;','&quot;+item(&quot;STATUS&quot;).ToString()+&quot;','&quot;+item(&quot;TYPE&quot;).ToString()+&quot;','&quot;+item(&quot;EXTERNAL_ACCOUNT_NO&quot;).ToString()+&quot;','&quot;+item(&quot;NAME&quot;).ToString()+&quot;','&quot;+item(&quot;NRIC/PP/BRN&quot;).ToString()+&quot;','&quot;+item(&quot;NRIC&quot;).ToString()+&quot;','&quot;+item(&quot;PASSPORT&quot;).ToString()+&quot;','&quot;+item(&quot;OLD_IC&quot;).ToString()+&quot;','&quot;+item(&quot;OTHER_IC&quot;).ToString()+&quot;','&quot;+item(&quot;BRN&quot;).ToString()+&quot;','&quot;+item(&quot;MKT_CODE&quot;).ToString()+&quot;','&quot;+item(&quot;RISK_CATEGORY&quot;).ToString()+&quot;','&quot;+item(&quot;RATE_PLAN&quot;).ToString()+&quot;','&quot;+item(&quot;EXCEPTIONAL_MDP&quot;).ToString()+&quot;','&quot;+item(&quot;CONTRACT&quot;).ToString()+&quot;','&quot;+item(&quot;MSISDN&quot;).ToString()+&quot;','&quot;+item(&quot;Article&quot;).ToString()+&quot;','&quot;+item(&quot;Description&quot;).ToString()+&quot;','&quot;+item(&quot;Sales Person&quot;).ToString()+&quot;','&quot;+item(&quot;Receipt No&quot;).ToString()+&quot;','&quot;+item(&quot;Sold Qty&quot;).ToString()+&quot;','&quot;+item(&quot;Mobile No&quot;).ToString()+&quot;','&quot;+item(&quot;IMEI No&quot;).ToString()+&quot;','&quot;+item(&quot;UOM Desc&quot;).ToString()+&quot;')&quot;]">
+                                                    <ui:ExecuteNonQuery.Parameters>
+                                                      <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                                    </ui:ExecuteNonQuery.Parameters>
+                                                    <sap:WorkflowViewStateService.ViewState>
+                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                        <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                                      </scg:Dictionary>
+                                                    </sap:WorkflowViewStateService.ViewState>
+                                                  </ui:ExecuteNonQuery>
+                                                </Sequence>
+                                              </If.Then>
+                                              <If.Else>
+                                                <Sequence sap:VirtualizedContainerService.HintSize="376,180" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'INSERT INTO [Sheet1$] ([Findings],[NO],[TYPES_OF_CHANNEL],[DATE],[USER_ID],[STATUS],[TYPE],[EXTERNAL_ACCOUNT_NO],[NAME],[NRIC/PP/BRN],[NRIC],[PASSPORT],[OLD_IC],[OTHER_IC],[BRN],[MKT_CODE],[RISK_CATEGORY],[RATE_PLAN],[EXCEPTIONAL_MDP],[CONTRACT],[MSISDN],[Article],[Description],[Sales Person],[Receipt No],[Sold Qty],[Mobile No],[IMEI No],[UOM Desc]) VALUES ('Unable to find fibre pair with completed status','$Dataset Column(TYPES_OF_CHANNEL)$','$Dataset Column(TYPES_OF_CHANNEL)$','$Dataset Column(DATE)$','$Dataset Column(USER_ID)$','$Dataset Column(STATUS)$','$Dataset Column(TYPE)$','$Dataset Column(EXTERNAL_ACCOUNT_NO)$','$Dataset Column(NAME)$','$Dataset Column(NRIC/PP/BRN)$','$Dataset Column(NRIC)$','$Dataset Column(PASSPORT)$','$Dataset Column(OLD_IC)$','$Dataset Column(OTHER_IC)$','$Dataset Column(BRN)$','$Dataset Column(MKT_CODE)$','$Dataset Column(RISK_CATEGORY)$','$Dataset Column(RATE_PLAN)$','$Dataset Column(EXCEPTIONAL_MDP)$','$Dataset Column(CONTRACT)$','$Dataset Column(MSISDN)$','$Dataset Column(Article)$','$Dataset Column(Description)$','$Dataset Column(Sales Person)$','$Dataset Column(Receipt No)$','$Dataset Column(Sold Qty)$','$Dataset Column(Mobile No)$','$Dataset Column(IMEI No)$','$Dataset Column(UOM Desc)$')'  Session: 'B2'" CommandType="Text" ExistingDbConnection="[B2Connection]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_5" Sql="[&quot;INSERT INTO [Sheet1$] ([Findings],[NO],[TYPES_OF_CHANNEL],[DATE],[USER_ID],[STATUS],[TYPE],[EXTERNAL_ACCOUNT_NO],[NAME],[NRIC/PP/BRN],[NRIC],[PASSPORT],[OLD_IC],[OTHER_IC],[BRN],[MKT_CODE],[RISK_CATEGORY],[RATE_PLAN],[EXCEPTIONAL_MDP],[CONTRACT],[MSISDN],[Article],[Description],[Sales Person],[Receipt No],[Sold Qty],[Mobile No],[IMEI No],[UOM Desc]) VALUES ('Unable to find fibre pair with completed status','&quot;+item(&quot;TYPES_OF_CHANNEL&quot;).ToString()+&quot;','&quot;+item(&quot;TYPES_OF_CHANNEL&quot;).ToString()+&quot;','&quot;+item(&quot;DATE&quot;).ToString()+&quot;','&quot;+item(&quot;USER_ID&quot;).ToString()+&quot;','&quot;+item(&quot;STATUS&quot;).ToString()+&quot;','&quot;+item(&quot;TYPE&quot;).ToString()+&quot;','&quot;+item(&quot;EXTERNAL_ACCOUNT_NO&quot;).ToString()+&quot;','&quot;+item(&quot;NAME&quot;).ToString()+&quot;','&quot;+item(&quot;NRIC/PP/BRN&quot;).ToString()+&quot;','&quot;+item(&quot;NRIC&quot;).ToString()+&quot;','&quot;+item(&quot;PASSPORT&quot;).ToString()+&quot;','&quot;+item(&quot;OLD_IC&quot;).ToString()+&quot;','&quot;+item(&quot;OTHER_IC&quot;).ToString()+&quot;','&quot;+item(&quot;BRN&quot;).ToString()+&quot;','&quot;+item(&quot;MKT_CODE&quot;).ToString()+&quot;','&quot;+item(&quot;RISK_CATEGORY&quot;).ToString()+&quot;','&quot;+item(&quot;RATE_PLAN&quot;).ToString()+&quot;','&quot;+item(&quot;EXCEPTIONAL_MDP&quot;).ToString()+&quot;','&quot;+item(&quot;CONTRACT&quot;).ToString()+&quot;','&quot;+item(&quot;MSISDN&quot;).ToString()+&quot;','&quot;+item(&quot;Article&quot;).ToString()+&quot;','&quot;+item(&quot;Description&quot;).ToString()+&quot;','&quot;+item(&quot;Sales Person&quot;).ToString()+&quot;','&quot;+item(&quot;Receipt No&quot;).ToString()+&quot;','&quot;+item(&quot;Sold Qty&quot;).ToString()+&quot;','&quot;+item(&quot;Mobile No&quot;).ToString()+&quot;','&quot;+item(&quot;IMEI No&quot;).ToString()+&quot;','&quot;+item(&quot;UOM Desc&quot;).ToString()+&quot;')&quot;]">
+                                                    <ui:ExecuteNonQuery.Parameters>
+                                                      <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                                    </ui:ExecuteNonQuery.Parameters>
+                                                  </ui:ExecuteNonQuery>
+                                                </Sequence>
+                                              </If.Else>
+                                            </If>
+                                          </Sequence>
+                                        </ActivityAction>
+                                      </ui:ForEachRow.Body>
+                                    </ui:ForEachRow>
+                                    <ui:DatabaseDisconnect sap2010:Annotation.AnnotationText="Disconnect from database Session:'B2'" DatabaseConnection="[B2Connection]" sap:VirtualizedContainerService.HintSize="889,22" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_1">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:DatabaseDisconnect>
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                            </Sequence>
+                          </ui:CommentOut.Body>
+                        </ui:CommentOut>
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEachRow.Body>
+          </ui:ForEachRow>
+          <ui:Comment sap:VirtualizedContainerService.HintSize="2186,74" sap2010:WorkflowViewState.IdRef="Comment_11" Text="----------------------&#xA;Check if there is a single non-HomeVoice fibre line item with completed status" />
+          <If sap2010:Annotation.AnnotationText="If $vHasHomeVoice$ Equal To (=) &quot;false&quot; AND $vHasMaxisOneHome$ Equal To (=) &quot;true&quot; Then" Condition="[vHasHomeVoice = &quot;false&quot; and vHasMaxisOneHome = &quot;true&quot;]" sap:VirtualizedContainerService.HintSize="2186,985" sap2010:WorkflowViewState.IdRef="If_8">
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="468,837" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="ui:DatabaseConnection" Name="B2Connection" />
+                  <Variable x:TypeArguments="sd:DataTable" Name="B1SQLDataSet" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:DatabaseConnect sap2010:Annotation.AnnotationText="Connect to &quot;DBQ=$vFindingsXLSFilePath$;Driver={Driver do Microsoft Excel(*.xls)};ReadOnly=0;Threads=3;UserCommitSync=Yes;HDR=Yes;&quot; Session:'B2'" DatabaseConnection="[B2Connection]" sap:VirtualizedContainerService.HintSize="426,59" sap2010:WorkflowViewState.IdRef="DatabaseConnect_3" ProviderName="System.Data.Odbc" ConnectionString="[&quot;DBQ=&quot;+vFindingsXLSFilePath+&quot;;Driver={Driver do Microsoft Excel(*.xls)};ReadOnly=0;Threads=3;UserCommitSync=Yes;HDR=Yes;&quot;]" />
+                <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'SELECT * FROM [Sheet1$] WHERE [RATE_PLAN] LIKE '%MAXISONE HOME%' AND [NRIC/PP/BRN] = '$vDistinctID$'' Session:'B1'" CommandType="Text" DataTable="[B1SQLDataSet]" ExistingDbConnection="[B1Connection]" sap:VirtualizedContainerService.HintSize="426,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_5" Sql="[&quot;SELECT * FROM [Sheet1$] WHERE [RATE_PLAN] LIKE '%MAXISONE HOME%' AND [NRIC/PP/BRN] = '&quot;+vDistinctID+&quot;'&quot;]">
+                  <ui:ExecuteQuery.Parameters>
+                    <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                  </ui:ExecuteQuery.Parameters>
+                </ui:ExecuteQuery>
+                <ui:ForEachRow CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Start Loop &quot;Each row in SQL Data Set Session: B1&quot;" DataTable="[B1SQLDataSet]" sap:VirtualizedContainerService.HintSize="426,456" sap2010:WorkflowViewState.IdRef="ForEachRow_5">
+                  <ui:ForEachRow.Body>
+                    <ActivityAction x:TypeArguments="sd:DataRow">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="sd:DataRow" Name="item" />
+                      </ActivityAction.Argument>
+                      <Sequence sap:VirtualizedContainerService.HintSize="376,308" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'UPDATE [Sheet1$] SET [Working Status] = 'Done', [Fibre] = 'True', [Pairing] = 'Not Paired' WHERE [RATE_PLAN] LIKE '%MaxisOne Home%' AND [NRIC/PP/BRN] = '$vDistinctID$''  Session: 'B1'" CommandType="Text" DisplayName="Execute non query" ExistingDbConnection="[B1Connection]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_9" Sql="[&quot;UPDATE [Sheet1$] SET [Working Status] = 'Done', [Fibre] = 'True', [Pairing] = 'Not Paired' WHERE [RATE_PLAN] LIKE '%MaxisOne Home%' AND [NRIC/PP/BRN] = '&quot;+vDistinctID+&quot;'&quot;]">
+                          <ui:ExecuteNonQuery.Parameters>
+                            <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                          </ui:ExecuteNonQuery.Parameters>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:ExecuteNonQuery>
+                        <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Execute SQL Statement: 'INSERT INTO [Sheet1$] ([Findings],[NO],[TYPES_OF_CHANNEL],[DATE],[USER_ID],[STATUS],[TYPE],[EXTERNAL_ACCOUNT_NO],[NAME],[NRIC/PP/BRN],[NRIC],[PASSPORT],[OLD_IC],[OTHER_IC],[BRN],[MKT_CODE],[RISK_CATEGORY],[RATE_PLAN],[EXCEPTIONAL_MDP],[CONTRACT],[MSISDN],[Article],[Description],[Sales Person],[Receipt No],[Sold Qty],[Mobile No],[IMEI No],[UOM Desc]) VALUES ('Unable to find Home Voice pairing','$Dataset Column(TYPES_OF_CHANNEL)$','$Dataset Column(TYPES_OF_CHANNEL)$','$Dataset Column(DATE)$','$Dataset Column(USER_ID)$','$Dataset Column(STATUS)$','$Dataset Column(TYPE)$','$Dataset Column(EXTERNAL_ACCOUNT_NO)$','$Dataset Column(NAME)$','$Dataset Column(NRIC/PP/BRN)$','$Dataset Column(NRIC)$','$Dataset Column(PASSPORT)$','$Dataset Column(OLD_IC)$','$Dataset Column(OTHER_IC)$','$Dataset Column(BRN)$','$Dataset Column(MKT_CODE)$','$Dataset Column(RISK_CATEGORY)$','$Dataset Column(RATE_PLAN)$','$Dataset Column(EXCEPTIONAL_MDP)$','$Dataset Column(CONTRACT)$','$Dataset Column(MSISDN)$','$Dataset Column(Article)$','$Dataset Column(Description)$','$Dataset Column(Sales Person)$','$Dataset Column(Receipt No)$','$Dataset Column(Sold Qty)$','$Dataset Column(Mobile No)$','$Dataset Column(IMEI No)$','$Dataset Column(UOM Desc)$')'  Session: 'B2'" CommandType="Text" ExistingDbConnection="[B2Connection]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_7" Sql="[&quot;INSERT INTO [Sheet1$] ([Findings],[NO],[TYPES_OF_CHANNEL],[DATE],[USER_ID],[STATUS],[TYPE],[EXTERNAL_ACCOUNT_NO],[NAME],[NRIC/PP/BRN],[NRIC],[PASSPORT],[OLD_IC],[OTHER_IC],[BRN],[MKT_CODE],[RISK_CATEGORY],[RATE_PLAN],[EXCEPTIONAL_MDP],[CONTRACT],[MSISDN],[Article],[Description],[Sales Person],[Receipt No],[Sold Qty],[Mobile No],[IMEI No],[UOM Desc]) VALUES ('Unable to find Home Voice pairing','&quot;+item(&quot;TYPES_OF_CHANNEL&quot;).ToString()+&quot;','&quot;+item(&quot;TYPES_OF_CHANNEL&quot;).ToString()+&quot;','&quot;+item(&quot;DATE&quot;).ToString()+&quot;','&quot;+item(&quot;USER_ID&quot;).ToString()+&quot;','&quot;+item(&quot;STATUS&quot;).ToString()+&quot;','&quot;+item(&quot;TYPE&quot;).ToString()+&quot;','&quot;+item(&quot;EXTERNAL_ACCOUNT_NO&quot;).ToString()+&quot;','&quot;+item(&quot;NAME&quot;).ToString()+&quot;','&quot;+item(&quot;NRIC/PP/BRN&quot;).ToString()+&quot;','&quot;+item(&quot;NRIC&quot;).ToString()+&quot;','&quot;+item(&quot;PASSPORT&quot;).ToString()+&quot;','&quot;+item(&quot;OLD_IC&quot;).ToString()+&quot;','&quot;+item(&quot;OTHER_IC&quot;).ToString()+&quot;','&quot;+item(&quot;BRN&quot;).ToString()+&quot;','&quot;+item(&quot;MKT_CODE&quot;).ToString()+&quot;','&quot;+item(&quot;RISK_CATEGORY&quot;).ToString()+&quot;','&quot;+item(&quot;RATE_PLAN&quot;).ToString()+&quot;','&quot;+item(&quot;EXCEPTIONAL_MDP&quot;).ToString()+&quot;','&quot;+item(&quot;CONTRACT&quot;).ToString()+&quot;','&quot;+item(&quot;MSISDN&quot;).ToString()+&quot;','&quot;+item(&quot;Article&quot;).ToString()+&quot;','&quot;+item(&quot;Description&quot;).ToString()+&quot;','&quot;+item(&quot;Sales Person&quot;).ToString()+&quot;','&quot;+item(&quot;Receipt No&quot;).ToString()+&quot;','&quot;+item(&quot;Sold Qty&quot;).ToString()+&quot;','&quot;+item(&quot;Mobile No&quot;).ToString()+&quot;','&quot;+item(&quot;IMEI No&quot;).ToString()+&quot;','&quot;+item(&quot;UOM Desc&quot;).ToString()+&quot;')&quot;]">
+                          <ui:ExecuteNonQuery.Parameters>
+                            <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                          </ui:ExecuteNonQuery.Parameters>
+                        </ui:ExecuteNonQuery>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEachRow.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:ForEachRow>
+                <ui:DatabaseDisconnect sap2010:Annotation.AnnotationText="Disconnect from database Session:'B2'" DatabaseConnection="[B2Connection]" sap:VirtualizedContainerService.HintSize="426,22" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_2">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:DatabaseDisconnect>
+              </Sequence>
+            </If.Then>
+          </If>
+          <ui:Comment sap:VirtualizedContainerService.HintSize="2186,55" sap2010:WorkflowViewState.IdRef="Comment_12" Text="----------------------&#xA;Disconnect all SQL connections" />
+          <ui:DatabaseDisconnect sap2010:Annotation.AnnotationText="Disconnect from database Session:'B1'" DatabaseConnection="[B1Connection]" sap:VirtualizedContainerService.HintSize="2186,22" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:DatabaseDisconnect>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="2232,757" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence sap:VirtualizedContainerService.HintSize="376,688" sap2010:WorkflowViewState.IdRef="Sequence_18">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_26">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[vHasSystemError]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">true</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_27">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[processStatus]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">Failed</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:LogMessage sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[vTaskname + &quot; - Process Status: Failed. Exception: &quot;+exception.Message]" />
+              <ui:Comment sap:VirtualizedContainerService.HintSize="334,74" sap2010:WorkflowViewState.IdRef="Comment_13" Text="When working with Orchestrator transactions, the following activity can be used." />
+              <ui:CommentOut sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                <ui:CommentOut.Body>
+                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" TransactionItem="{x:Null}" ErrorType="Business" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_1" Status="Failed">
+                      <ui:SetTransactionStatus.Analytics>
+                        <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                      </ui:SetTransactionStatus.Analytics>
+                      <ui:SetTransactionStatus.Output>
+                        <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                      </ui:SetTransactionStatus.Output>
+                    </ui:SetTransactionStatus>
+                  </Sequence>
+                </ui:CommentOut.Body>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:CommentOut>
+              <Assign sap2010:Annotation.AnnotationText="Variable Operation: $vTaskname$ ($Error Line Number$): $Error Description$ To $vSystemMessage$" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_30">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[vSystemMessage]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[vTaskname +": "+exception.Message]</InArgument>
+                </Assign.Value>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Assign>
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>
